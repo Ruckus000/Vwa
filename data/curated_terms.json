@@ -1,0 +1,1129 @@
+[
+  {
+    "id": 1,
+    "term": "no cap",
+    "category": "TRUTH",
+    "definition": "For real, no lie, I'm being completely serious",
+    "example": "That concert was amazing, no cap",
+    "translations": {
+      "ES": {
+        "definition": "Expresión que significa 'en serio' o 'sin mentir'. Se usa para enfatizar que algo es completamente verdad y no estás exagerando.",
+        "example": "Ese concierto estuvo increíble, en serio"
+      },
+      "FR": {
+        "definition": "Expression signifiant 'sérieusement' ou 'sans mentir'. Utilisée pour souligner que quelque chose est absolument vrai sans exagération.",
+        "example": "Ce concert était incroyable, sans mentir"
+      }
+    },
+    "meta": {
+      "thumbsUp": 0,
+      "thumbsDown": 0,
+      "author": "claude",
+      "addedOn": "2025-01-30"
+    }
+  },
+  {
+    "id": 2,
+    "term": "lowkey",
+    "category": "DEGREE",
+    "definition": "Slightly, kind of, secretly, or without making a big deal about it",
+    "example": "I lowkey want to skip the party tonight",
+    "translations": {
+      "ES": {
+        "definition": "Significa 'un poco', 'secretamente' o 'sin exagerar'. Se usa cuando quieres admitir algo sin darle mucha importancia o de manera discreta.",
+        "example": "La verdad, un poco quiero saltarme la fiesta esta noche"
+      },
+      "FR": {
+        "definition": "Signifie 'un peu', 'secrètement' ou 'sans en faire tout un plat'. Utilisé pour admettre quelque chose discrètement.",
+        "example": "En vrai, j'ai un peu envie de sécher la fête ce soir"
+      }
+    },
+    "meta": {
+      "thumbsUp": 0,
+      "thumbsDown": 0,
+      "author": "claude",
+      "addedOn": "2025-01-30"
+    }
+  },
+  {
+    "id": 3,
+    "term": "highkey",
+    "category": "DEGREE",
+    "definition": "Very much, obviously, openly and without hiding it",
+    "example": "I highkey need a vacation right now",
+    "translations": {
+      "ES": {
+        "definition": "Significa 'totalmente', 'abiertamente' o 'sin ocultarlo'. Es lo opuesto a 'lowkey' - admites algo con énfasis.",
+        "example": "Totalmente necesito unas vacaciones ahora mismo"
+      },
+      "FR": {
+        "definition": "Signifie 'carrément', 'ouvertement' ou 'sans le cacher'. C'est l'opposé de 'lowkey' - on admet quelque chose avec emphase.",
+        "example": "J'ai carrément besoin de vacances là maintenant"
+      }
+    },
+    "meta": {
+      "thumbsUp": 0,
+      "thumbsDown": 0,
+      "author": "claude",
+      "addedOn": "2025-01-30"
+    }
+  },
+  {
+    "id": 4,
+    "term": "bet",
+    "category": "AGREEMENT",
+    "definition": "Okay, sure, sounds good, I agree, it's a deal",
+    "example": "Want to grab food later? Bet.",
+    "translations": {
+      "ES": {
+        "definition": "Forma casual de decir 'vale', 'dale', 'hecho' o 'de acuerdo'. Se usa para confirmar planes o mostrar que estás de acuerdo.",
+        "example": "¿Comemos algo luego? Dale."
+      },
+      "FR": {
+        "definition": "Façon décontractée de dire 'ok', 'd'accord' ou 'ça marche'. Utilisé pour confirmer des plans ou montrer son accord.",
+        "example": "On mange un truc plus tard? Ça marche."
+      }
+    },
+    "meta": {
+      "thumbsUp": 0,
+      "thumbsDown": 0,
+      "author": "claude",
+      "addedOn": "2025-01-30"
+    }
+  },
+  {
+    "id": 5,
+    "term": "slay",
+    "category": "PRAISE",
+    "definition": "To do something exceptionally well, to look amazing, to kill it",
+    "example": "You look so good tonight, you're slaying!",
+    "translations": {
+      "ES": {
+        "definition": "Hacer algo excepcionalmente bien o verse increíble. Originalmente de la cultura drag/LGBTQ+, ahora es uso general para elogiar a alguien.",
+        "example": "Te ves increíble esta noche, ¡la estás rompiendo!"
+      },
+      "FR": {
+        "definition": "Faire quelque chose exceptionnellement bien ou avoir un look incroyable. Vient de la culture drag/LGBTQ+, maintenant utilisé pour complimenter.",
+        "example": "T'es trop belle ce soir, tu gères!"
+      }
+    },
+    "meta": {
+      "thumbsUp": 0,
+      "thumbsDown": 0,
+      "author": "claude",
+      "addedOn": "2025-01-30"
+    }
+  },
+  {
+    "id": 6,
+    "term": "bussin",
+    "category": "QUALITY",
+    "definition": "Really good, delicious, amazing (originally for food, now used broadly)",
+    "example": "This pizza is bussin, you have to try it",
+    "translations": {
+      "ES": {
+        "definition": "Muy bueno, delicioso, increíble. Se usaba originalmente para comida pero ahora describe cualquier cosa excelente.",
+        "example": "Esta pizza está buenísima, tienes que probarla"
+      },
+      "FR": {
+        "definition": "Vraiment bon, délicieux, incroyable. Utilisé à l'origine pour la nourriture, maintenant pour tout ce qui est excellent.",
+        "example": "Cette pizza est trop bonne, faut que tu goûtes"
+      }
+    },
+    "meta": {
+      "thumbsUp": 0,
+      "thumbsDown": 0,
+      "author": "claude",
+      "addedOn": "2025-01-30"
+    }
+  },
+  {
+    "id": 7,
+    "term": "mid",
+    "category": "CRITICISM",
+    "definition": "Mediocre, average, nothing special, underwhelming",
+    "example": "Everyone hyped that movie but honestly it was mid",
+    "translations": {
+      "ES": {
+        "definition": "Mediocre, promedio, nada especial. Se usa para expresar decepción cuando algo no cumple las expectativas.",
+        "example": "Todos hablaban maravillas de esa película pero la verdad estuvo del montón"
+      },
+      "FR": {
+        "definition": "Médiocre, moyen, rien de spécial. Utilisé pour exprimer sa déception quand quelque chose ne répond pas aux attentes.",
+        "example": "Tout le monde parlait de ce film mais franchement c'était bof"
+      }
+    },
+    "meta": {
+      "thumbsUp": 0,
+      "thumbsDown": 0,
+      "author": "claude",
+      "addedOn": "2025-01-30"
+    }
+  },
+  {
+    "id": 8,
+    "term": "fire",
+    "category": "PRAISE",
+    "definition": "Extremely good, hot, amazing, excellent",
+    "example": "That new song is fire, I can't stop listening to it",
+    "translations": {
+      "ES": {
+        "definition": "Muy bueno, increíble, excelente. Se usa para describir algo que te impresiona mucho, especialmente música, ropa o comida.",
+        "example": "Esa canción nueva está que arde, no puedo dejar de escucharla"
+      },
+      "FR": {
+        "definition": "Très bon, incroyable, excellent. Utilisé pour décrire quelque chose qui impressionne, surtout la musique, les vêtements ou la nourriture.",
+        "example": "Cette nouvelle chanson est trop bien, je peux pas arrêter de l'écouter"
+      }
+    },
+    "meta": {
+      "thumbsUp": 0,
+      "thumbsDown": 0,
+      "author": "claude",
+      "addedOn": "2025-01-30"
+    }
+  },
+  {
+    "id": 9,
+    "term": "goated",
+    "category": "PRAISE",
+    "definition": "The greatest of all time, the best at something, legendary",
+    "example": "Messi is goated, nobody compares to him",
+    "translations": {
+      "ES": {
+        "definition": "El mejor de todos los tiempos (viene de GOAT = Greatest Of All Time). Se usa para decir que alguien o algo es legendario en su campo.",
+        "example": "Messi es el mejor de la historia, nadie se le compara"
+      },
+      "FR": {
+        "definition": "Le meilleur de tous les temps (vient de GOAT = Greatest Of All Time). Utilisé pour dire que quelqu'un ou quelque chose est légendaire.",
+        "example": "Messi c'est le GOAT, personne lui arrive à la cheville"
+      }
+    },
+    "meta": {
+      "thumbsUp": 0,
+      "thumbsDown": 0,
+      "author": "claude",
+      "addedOn": "2025-01-30"
+    }
+  },
+  {
+    "id": 10,
+    "term": "fr fr",
+    "category": "TRUTH",
+    "definition": "For real for real, genuinely serious, I really mean it",
+    "example": "I'm tired of this job fr fr",
+    "translations": {
+      "ES": {
+        "definition": "Abreviatura de 'for real for real'. Enfatiza que hablas completamente en serio, más fuerte que solo 'for real'.",
+        "example": "Ya estoy harto de este trabajo, de verdad de la buena"
+      },
+      "FR": {
+        "definition": "Abréviation de 'for real for real'. Souligne qu'on est vraiment sérieux, plus fort qu'un simple 'for real'.",
+        "example": "J'en ai marre de ce taf, vraiment vraiment"
+      }
+    },
+    "meta": {
+      "thumbsUp": 0,
+      "thumbsDown": 0,
+      "author": "claude",
+      "addedOn": "2025-01-30"
+    }
+  },
+  {
+    "id": 11,
+    "term": "on god",
+    "category": "TRUTH",
+    "definition": "I swear, I promise, on my life, I'm being completely honest",
+    "example": "On god, I didn't take your charger",
+    "translations": {
+      "ES": {
+        "definition": "Lo juro, te lo prometo, por mi vida. Se usa para enfatizar que dices la verdad absoluta.",
+        "example": "Te lo juro, yo no agarré tu cargador"
+      },
+      "FR": {
+        "definition": "Je te jure, je te promets, sur ma vie. Utilisé pour souligner qu'on dit la vérité absolue.",
+        "example": "Je te jure, j'ai pas pris ton chargeur"
+      }
+    },
+    "meta": {
+      "thumbsUp": 0,
+      "thumbsDown": 0,
+      "author": "claude",
+      "addedOn": "2025-01-30"
+    }
+  },
+  {
+    "id": 12,
+    "term": "deadass",
+    "category": "TRUTH",
+    "definition": "Seriously, for real, I'm not joking (originated in New York)",
+    "example": "Deadass, that's the funniest thing I've ever seen",
+    "translations": {
+      "ES": {
+        "definition": "En serio, de verdad, no estoy bromeando. Viene del slang de Nueva York. Enfatiza sinceridad total.",
+        "example": "En serio, eso es lo más gracioso que he visto en mi vida"
+      },
+      "FR": {
+        "definition": "Sérieusement, pour de vrai, je rigole pas. Vient du slang new-yorkais. Souligne une sincérité totale.",
+        "example": "Sérieux, c'est le truc le plus drôle que j'ai jamais vu"
+      }
+    },
+    "meta": {
+      "thumbsUp": 0,
+      "thumbsDown": 0,
+      "author": "claude",
+      "addedOn": "2025-01-30"
+    }
+  },
+  {
+    "id": 13,
+    "term": "salty",
+    "category": "EMOTION",
+    "definition": "Bitter, upset, or annoyed, especially about losing or being embarrassed",
+    "example": "Don't be salty just because you lost the game",
+    "translations": {
+      "ES": {
+        "definition": "Amargado, molesto o resentido, especialmente después de perder o pasar vergüenza. Implica que alguien no puede superar algo.",
+        "example": "No te pongas amargado solo porque perdiste el juego"
+      },
+      "FR": {
+        "definition": "Amer, vexé ou énervé, surtout après avoir perdu ou été embarrassé. Implique qu'on n'arrive pas à passer à autre chose.",
+        "example": "Fais pas la tête juste parce que t'as perdu"
+      }
+    },
+    "meta": {
+      "thumbsUp": 0,
+      "thumbsDown": 0,
+      "author": "claude",
+      "addedOn": "2025-01-30"
+    }
+  },
+  {
+    "id": 14,
+    "term": "pressed",
+    "category": "EMOTION",
+    "definition": "Overly bothered, upset, or worked up about something",
+    "example": "Why are you so pressed about what she said?",
+    "translations": {
+      "ES": {
+        "definition": "Demasiado afectado, molesto o alterado por algo. Implica que alguien está reaccionando exageradamente.",
+        "example": "¿Por qué estás tan alterado por lo que ella dijo?"
+      },
+      "FR": {
+        "definition": "Trop affecté, énervé ou perturbé par quelque chose. Implique qu'on réagit de façon exagérée.",
+        "example": "Pourquoi tu t'énerves autant pour ce qu'elle a dit?"
+      }
+    },
+    "meta": {
+      "thumbsUp": 0,
+      "thumbsDown": 0,
+      "author": "claude",
+      "addedOn": "2025-01-30"
+    }
+  },
+  {
+    "id": 15,
+    "term": "finna",
+    "category": "OTHER",
+    "definition": "Going to, about to, planning to (contraction of 'fixing to')",
+    "example": "I'm finna go to the store, you need anything?",
+    "translations": {
+      "ES": {
+        "definition": "Voy a, estoy a punto de. Contracción de 'fixing to', del inglés sureño americano. Indica intención inmediata.",
+        "example": "Voy a ir a la tienda, ¿necesitas algo?"
+      },
+      "FR": {
+        "definition": "Je vais, je suis sur le point de. Contraction de 'fixing to', du sud des États-Unis. Indique une intention immédiate.",
+        "example": "Je vais aller au magasin, t'as besoin de quelque chose?"
+      }
+    },
+    "meta": {
+      "thumbsUp": 0,
+      "thumbsDown": 0,
+      "author": "claude",
+      "addedOn": "2025-01-30"
+    }
+  },
+  {
+    "id": 16,
+    "term": "periodt",
+    "category": "AGREEMENT",
+    "definition": "Period, end of discussion, that's final, no further debate needed",
+    "example": "She's the best singer of our generation, periodt",
+    "translations": {
+      "ES": {
+        "definition": "Punto final, fin de la discusión, no hay nada más que decir. La 't' extra añade énfasis dramático.",
+        "example": "Ella es la mejor cantante de nuestra generación, punto y final"
+      },
+      "FR": {
+        "definition": "Point final, fin de la discussion, y'a rien à ajouter. Le 't' supplémentaire ajoute un effet dramatique.",
+        "example": "C'est la meilleure chanteuse de notre génération, point barre"
+      }
+    },
+    "meta": {
+      "thumbsUp": 0,
+      "thumbsDown": 0,
+      "author": "claude",
+      "addedOn": "2025-01-30"
+    }
+  },
+  {
+    "id": 17,
+    "term": "slaps",
+    "category": "QUALITY",
+    "definition": "Is really good, hits hard (usually for music but used broadly)",
+    "example": "This song slaps, turn it up!",
+    "translations": {
+      "ES": {
+        "definition": "Está muy bueno, pega fuerte. Se usa principalmente para música pero también para comida u otras cosas excelentes.",
+        "example": "Esta canción está buenísima, ¡súbele!"
+      },
+      "FR": {
+        "definition": "Est vraiment bon, ça claque. Utilisé surtout pour la musique mais aussi pour la nourriture ou d'autres choses excellentes.",
+        "example": "Cette chanson elle claque, monte le son!"
+      }
+    },
+    "meta": {
+      "thumbsUp": 0,
+      "thumbsDown": 0,
+      "author": "claude",
+      "addedOn": "2025-01-30"
+    }
+  },
+  {
+    "id": 18,
+    "term": "hits different",
+    "category": "QUALITY",
+    "definition": "Affects you in a unique or special way, feels more meaningful",
+    "example": "Listening to this album at night hits different",
+    "translations": {
+      "ES": {
+        "definition": "Te afecta de una manera única o especial, se siente más significativo. Implica una conexión emocional más profunda.",
+        "example": "Escuchar este álbum de noche pega distinto"
+      },
+      "FR": {
+        "definition": "T'affecte d'une façon unique ou spéciale, ça a plus de sens. Implique une connexion émotionnelle plus profonde.",
+        "example": "Écouter cet album la nuit, ça fait pas pareil"
+      }
+    },
+    "meta": {
+      "thumbsUp": 0,
+      "thumbsDown": 0,
+      "author": "claude",
+      "addedOn": "2025-01-30"
+    }
+  },
+  {
+    "id": 19,
+    "term": "main character",
+    "category": "OTHER",
+    "definition": "Acting like the protagonist of a movie, center of attention, living your best life",
+    "example": "She walked in with such confidence, total main character energy",
+    "translations": {
+      "ES": {
+        "definition": "Actuar como el protagonista de una película, ser el centro de atención, vivir tu mejor momento. Puede ser positivo o irónico.",
+        "example": "Entró con tanta confianza, pura energía de protagonista"
+      },
+      "FR": {
+        "definition": "Agir comme le protagoniste d'un film, être le centre d'attention, vivre son meilleur moment. Peut être positif ou ironique.",
+        "example": "Elle est entrée avec une telle confiance, vraie énergie de personnage principal"
+      }
+    },
+    "meta": {
+      "thumbsUp": 0,
+      "thumbsDown": 0,
+      "author": "claude",
+      "addedOn": "2025-01-30"
+    }
+  },
+  {
+    "id": 20,
+    "term": "ate",
+    "category": "PRAISE",
+    "definition": "Did something perfectly, killed it, nailed it (past tense of eating/slaying)",
+    "example": "Her performance? She ate and left no crumbs",
+    "translations": {
+      "ES": {
+        "definition": "Hizo algo perfectamente, lo clavó, la rompió. Viene de la cultura drag. 'Left no crumbs' = no dejó nada que criticar.",
+        "example": "¿Su presentación? La rompió completamente"
+      },
+      "FR": {
+        "definition": "A fait quelque chose parfaitement, a tout déchiré. Vient de la culture drag. 'Left no crumbs' = rien à critiquer.",
+        "example": "Sa performance? Elle a tout géré, rien à redire"
+      }
+    },
+    "meta": {
+      "thumbsUp": 0,
+      "thumbsDown": 0,
+      "author": "claude",
+      "addedOn": "2025-01-30"
+    }
+  },
+  {
+    "id": 21,
+    "term": "understood the assignment",
+    "category": "PRAISE",
+    "definition": "Knew exactly what to do and did it perfectly, got it right",
+    "example": "Look at her outfit for the theme party, she understood the assignment",
+    "translations": {
+      "ES": {
+        "definition": "Sabía exactamente qué hacer y lo hizo perfecto, captó la idea. Se usa cuando alguien cumple o supera expectativas.",
+        "example": "Mira su outfit para la fiesta temática, entendió perfectamente la tarea"
+      },
+      "FR": {
+        "definition": "Savait exactement quoi faire et l'a fait parfaitement, a compris le truc. Quand quelqu'un répond ou dépasse les attentes.",
+        "example": "Regarde sa tenue pour la soirée à thème, elle a tout compris"
+      }
+    },
+    "meta": {
+      "thumbsUp": 0,
+      "thumbsDown": 0,
+      "author": "claude",
+      "addedOn": "2025-01-30"
+    }
+  },
+  {
+    "id": 22,
+    "term": "rent free",
+    "category": "OTHER",
+    "definition": "Living in someone's head, constantly being thought about",
+    "example": "That embarrassing moment from 5 years ago still lives in my head rent free",
+    "translations": {
+      "ES": {
+        "definition": "Vivir en la cabeza de alguien sin pagar renta, pensar constantemente en algo. Suele ser sobre algo que no puedes olvidar.",
+        "example": "Ese momento vergonzoso de hace 5 años todavía vive en mi cabeza sin pagar renta"
+      },
+      "FR": {
+        "definition": "Vivre dans la tête de quelqu'un sans payer de loyer, penser constamment à quelque chose. Souvent pour ce qu'on n'arrive pas à oublier.",
+        "example": "Ce moment gênant d'il y a 5 ans vit encore dans ma tête sans payer de loyer"
+      }
+    },
+    "meta": {
+      "thumbsUp": 0,
+      "thumbsDown": 0,
+      "author": "claude",
+      "addedOn": "2025-01-30"
+    }
+  },
+  {
+    "id": 23,
+    "term": "its giving",
+    "category": "OTHER",
+    "definition": "It reminds me of, it has the vibe of, it's serving",
+    "example": "That outfit is giving 90s supermodel",
+    "translations": {
+      "ES": {
+        "definition": "Me recuerda a, tiene la vibra de, está dando. Se usa para describir qué energía o estética transmite algo.",
+        "example": "Ese outfit está dando supermodelo de los 90"
+      },
+      "FR": {
+        "definition": "Ça me rappelle, ça a le vibe de, ça donne. Utilisé pour décrire quelle énergie ou esthétique quelque chose dégage.",
+        "example": "Cette tenue ça fait trop top model des années 90"
+      }
+    },
+    "meta": {
+      "thumbsUp": 0,
+      "thumbsDown": 0,
+      "author": "claude",
+      "addedOn": "2025-01-30"
+    }
+  },
+  {
+    "id": 24,
+    "term": "say less",
+    "category": "AGREEMENT",
+    "definition": "I understand, no need to explain more, I'm already on it",
+    "example": "You want me to pick you up? Say less, I'm on my way",
+    "translations": {
+      "ES": {
+        "definition": "Entendido, no necesitas explicar más, ya estoy en eso. Muestra que captas la idea inmediatamente.",
+        "example": "¿Quieres que te recoja? Dicho, ya voy para allá"
+      },
+      "FR": {
+        "definition": "Compris, pas besoin d'en dire plus, je m'en occupe. Montre qu'on a compris immédiatement.",
+        "example": "Tu veux que je vienne te chercher? Dis plus rien, j'arrive"
+      }
+    },
+    "meta": {
+      "thumbsUp": 0,
+      "thumbsDown": 0,
+      "author": "claude",
+      "addedOn": "2025-01-30"
+    }
+  },
+  {
+    "id": 25,
+    "term": "valid",
+    "category": "AGREEMENT",
+    "definition": "Acceptable, understandable, makes sense, I respect that",
+    "example": "You don't like cilantro? That's valid",
+    "translations": {
+      "ES": {
+        "definition": "Aceptable, comprensible, tiene sentido, lo respeto. Se usa para validar la opinión o decisión de alguien.",
+        "example": "¿No te gusta el cilantro? Es válido"
+      },
+      "FR": {
+        "definition": "Acceptable, compréhensible, ça se tient, je respecte. Utilisé pour valider l'opinion ou la décision de quelqu'un.",
+        "example": "T'aimes pas la coriandre? C'est valide"
+      }
+    },
+    "meta": {
+      "thumbsUp": 0,
+      "thumbsDown": 0,
+      "author": "claude",
+      "addedOn": "2025-01-30"
+    }
+  },
+  {
+    "id": 26,
+    "term": "vibes",
+    "category": "OTHER",
+    "definition": "The atmosphere, energy, or feeling of a place, person, or situation",
+    "example": "This cafe has such good vibes",
+    "translations": {
+      "ES": {
+        "definition": "La atmósfera, energía o sensación de un lugar, persona o situación. Puede ser positivo ('good vibes') o negativo ('bad vibes').",
+        "example": "Este café tiene muy buena vibra"
+      },
+      "FR": {
+        "definition": "L'atmosphère, l'énergie ou le ressenti d'un lieu, d'une personne ou d'une situation. Peut être positif ou négatif.",
+        "example": "Ce café a trop de bonnes vibes"
+      }
+    },
+    "meta": {
+      "thumbsUp": 0,
+      "thumbsDown": 0,
+      "author": "claude",
+      "addedOn": "2025-01-30"
+    }
+  },
+  {
+    "id": 27,
+    "term": "caught in 4k",
+    "category": "OTHER",
+    "definition": "Caught red-handed with clear evidence, exposed with proof",
+    "example": "He said he wasn't at the party but got caught in 4k on someone's story",
+    "translations": {
+      "ES": {
+        "definition": "Atrapado con las manos en la masa con evidencia clara, expuesto con pruebas. Referencia a video en alta resolución (4K).",
+        "example": "Dijo que no estaba en la fiesta pero lo cacharon en 4K en la historia de alguien"
+      },
+      "FR": {
+        "definition": "Pris la main dans le sac avec des preuves claires, exposé. Référence à la vidéo haute résolution (4K).",
+        "example": "Il a dit qu'il était pas à la fête mais il s'est fait griller en 4K sur la story de quelqu'un"
+      }
+    },
+    "meta": {
+      "thumbsUp": 0,
+      "thumbsDown": 0,
+      "author": "claude",
+      "addedOn": "2025-01-30"
+    }
+  },
+  {
+    "id": 28,
+    "term": "stan",
+    "category": "OTHER",
+    "definition": "To be an extremely devoted fan of someone, to obsessively support",
+    "example": "I stan Taylor Swift, she's amazing",
+    "translations": {
+      "ES": {
+        "definition": "Ser un fan extremadamente devoto de alguien, apoyar obsesivamente. Viene de la canción 'Stan' de Eminem.",
+        "example": "Soy super fan de Taylor Swift, es increíble"
+      },
+      "FR": {
+        "definition": "Être un fan extrêmement dévoué de quelqu'un, soutenir obsessionnellement. Vient de la chanson 'Stan' d'Eminem.",
+        "example": "Je suis complètement fan de Taylor Swift, elle est incroyable"
+      }
+    },
+    "meta": {
+      "thumbsUp": 0,
+      "thumbsDown": 0,
+      "author": "claude",
+      "addedOn": "2025-01-30"
+    }
+  },
+  {
+    "id": 29,
+    "term": "simp",
+    "category": "CRITICISM",
+    "definition": "Someone who does too much for someone they like, desperate for attention",
+    "example": "He bought her flowers every day for a month? That's simping",
+    "translations": {
+      "ES": {
+        "definition": "Alguien que hace demasiado por alguien que le gusta, desesperado por atención. Puede ser usado en broma o como crítica.",
+        "example": "¿Le compró flores todos los días por un mes? Eso es de simp"
+      },
+      "FR": {
+        "definition": "Quelqu'un qui en fait trop pour quelqu'un qui lui plaît, désespéré pour de l'attention. Peut être une blague ou une critique.",
+        "example": "Il lui a acheté des fleurs tous les jours pendant un mois? C'est du simp ça"
+      }
+    },
+    "meta": {
+      "thumbsUp": 0,
+      "thumbsDown": 0,
+      "author": "claude",
+      "addedOn": "2025-01-30"
+    }
+  },
+  {
+    "id": 30,
+    "term": "pick me",
+    "category": "CRITICISM",
+    "definition": "Someone who seeks validation by putting down their own group, tries too hard to be different",
+    "example": "She's such a pick me, always saying she's not like other girls",
+    "translations": {
+      "ES": {
+        "definition": "Alguien que busca validación menospreciando a su propio grupo, intenta demasiado ser diferente. Típicamente 'no soy como las otras chicas'.",
+        "example": "Es muy pick me, siempre diciendo que no es como las otras chicas"
+      },
+      "FR": {
+        "definition": "Quelqu'un qui cherche de la validation en rabaissant son propre groupe, essaie trop d'être différent. Style 'je suis pas comme les autres filles'.",
+        "example": "Elle est trop pick me, toujours à dire qu'elle est pas comme les autres filles"
+      }
+    },
+    "meta": {
+      "thumbsUp": 0,
+      "thumbsDown": 0,
+      "author": "claude",
+      "addedOn": "2025-01-30"
+    }
+  },
+  {
+    "id": 31,
+    "term": "based",
+    "category": "PRAISE",
+    "definition": "Unapologetically being yourself, having a bold opinion without caring what others think",
+    "example": "He said exactly what everyone was thinking, so based",
+    "translations": {
+      "ES": {
+        "definition": "Ser tú mismo sin disculpas, tener una opinión audaz sin importar lo que piensen otros. Originalmente del rapero Lil B.",
+        "example": "Dijo exactamente lo que todos pensaban, qué basado"
+      },
+      "FR": {
+        "definition": "Être soi-même sans s'excuser, avoir une opinion audacieuse sans se soucier de ce que les autres pensent. Vient du rappeur Lil B.",
+        "example": "Il a dit exactement ce que tout le monde pensait, trop basé"
+      }
+    },
+    "meta": {
+      "thumbsUp": 0,
+      "thumbsDown": 0,
+      "author": "claude",
+      "addedOn": "2025-01-30"
+    }
+  },
+  {
+    "id": 32,
+    "term": "cringe",
+    "category": "CRITICISM",
+    "definition": "Embarrassingly awkward, makes you uncomfortable to watch",
+    "example": "His dance at the wedding was so cringe",
+    "translations": {
+      "ES": {
+        "definition": "Vergonzosamente incómodo, te hace sentir incómodo de ver. Produce vergüenza ajena.",
+        "example": "Su baile en la boda fue muy cringe"
+      },
+      "FR": {
+        "definition": "Terriblement gênant, met mal à l'aise rien qu'à regarder. Provoque un malaise.",
+        "example": "Sa danse au mariage c'était trop cringe"
+      }
+    },
+    "meta": {
+      "thumbsUp": 0,
+      "thumbsDown": 0,
+      "author": "claude",
+      "addedOn": "2025-01-30"
+    }
+  },
+  {
+    "id": 33,
+    "term": "W",
+    "category": "PRAISE",
+    "definition": "Win, success, something positive happened",
+    "example": "Got a promotion today, huge W",
+    "translations": {
+      "ES": {
+        "definition": "Victoria, éxito, algo positivo pasó. Abreviatura de 'Win'. Lo opuesto es 'L' (derrota).",
+        "example": "Me ascendieron hoy, tremenda W"
+      },
+      "FR": {
+        "definition": "Victoire, succès, quelque chose de positif s'est passé. Abréviation de 'Win'. L'opposé est 'L' (défaite).",
+        "example": "J'ai eu une promo aujourd'hui, gros W"
+      }
+    },
+    "meta": {
+      "thumbsUp": 0,
+      "thumbsDown": 0,
+      "author": "claude",
+      "addedOn": "2025-01-30"
+    }
+  },
+  {
+    "id": 34,
+    "term": "L",
+    "category": "CRITICISM",
+    "definition": "Loss, failure, something bad happened, embarrassing",
+    "example": "He got rejected in front of everyone, that's an L",
+    "translations": {
+      "ES": {
+        "definition": "Derrota, fracaso, algo malo pasó, vergonzoso. Abreviatura de 'Loss'. Lo opuesto es 'W' (victoria).",
+        "example": "Lo rechazaron frente a todos, eso es una L"
+      },
+      "FR": {
+        "definition": "Défaite, échec, quelque chose de mauvais s'est passé, embarrassant. Abréviation de 'Loss'. L'opposé est 'W'.",
+        "example": "Il s'est fait rejeter devant tout le monde, c'est un L"
+      }
+    },
+    "meta": {
+      "thumbsUp": 0,
+      "thumbsDown": 0,
+      "author": "claude",
+      "addedOn": "2025-01-30"
+    }
+  },
+  {
+    "id": 35,
+    "term": "ratio",
+    "category": "CRITICISM",
+    "definition": "When a reply gets more likes than the original post, indicating disagreement",
+    "example": "His tweet got ratioed so hard, everyone disagreed",
+    "translations": {
+      "ES": {
+        "definition": "Cuando una respuesta recibe más likes que el post original, indicando desacuerdo. Término de Twitter/X.",
+        "example": "Su tweet fue ratioed durísimo, todos estaban en desacuerdo"
+      },
+      "FR": {
+        "definition": "Quand une réponse reçoit plus de likes que le post original, indiquant un désaccord. Terme de Twitter/X.",
+        "example": "Son tweet s'est fait ratio grave, tout le monde était pas d'accord"
+      }
+    },
+    "meta": {
+      "thumbsUp": 0,
+      "thumbsDown": 0,
+      "author": "claude",
+      "addedOn": "2025-01-30"
+    }
+  },
+  {
+    "id": 36,
+    "term": "ong",
+    "category": "TRUTH",
+    "definition": "On god, I swear (abbreviated form for texting)",
+    "example": "That test was so hard ong",
+    "translations": {
+      "ES": {
+        "definition": "Abreviatura de 'on god', lo juro. Versión corta para mensajes de texto.",
+        "example": "Ese examen estuvo muy difícil te lo juro"
+      },
+      "FR": {
+        "definition": "Abréviation de 'on god', je te jure. Version courte pour les messages.",
+        "example": "Cet exam était trop dur je te jure"
+      }
+    },
+    "meta": {
+      "thumbsUp": 0,
+      "thumbsDown": 0,
+      "author": "claude",
+      "addedOn": "2025-01-30"
+    }
+  },
+  {
+    "id": 37,
+    "term": "ngl",
+    "category": "TRUTH",
+    "definition": "Not gonna lie, to be honest",
+    "example": "Ngl that movie was pretty boring",
+    "translations": {
+      "ES": {
+        "definition": "Abreviatura de 'not gonna lie', para ser honesto, la verdad. Se usa antes de dar una opinión sincera.",
+        "example": "La verdad, esa película estuvo bastante aburrida"
+      },
+      "FR": {
+        "definition": "Abréviation de 'not gonna lie', pour être honnête, franchement. Utilisé avant de donner une opinion sincère.",
+        "example": "Franchement ce film était assez ennuyeux"
+      }
+    },
+    "meta": {
+      "thumbsUp": 0,
+      "thumbsDown": 0,
+      "author": "claude",
+      "addedOn": "2025-01-30"
+    }
+  },
+  {
+    "id": 38,
+    "term": "iykyk",
+    "category": "OTHER",
+    "definition": "If you know you know, inside joke or reference that only some understand",
+    "example": "The back table at that restaurant, iykyk",
+    "translations": {
+      "ES": {
+        "definition": "Si sabes, sabes. Se usa para referencias internas o chistes que solo algunos entienden. Crea exclusividad.",
+        "example": "La mesa del fondo en ese restaurante, si sabes sabes"
+      },
+      "FR": {
+        "definition": "Si tu sais tu sais. Utilisé pour des références internes ou des blagues que seuls certains comprennent. Crée de l'exclusivité.",
+        "example": "La table du fond dans ce resto, si tu sais tu sais"
+      }
+    },
+    "meta": {
+      "thumbsUp": 0,
+      "thumbsDown": 0,
+      "author": "claude",
+      "addedOn": "2025-01-30"
+    }
+  },
+  {
+    "id": 39,
+    "term": "rizz",
+    "category": "OTHER",
+    "definition": "Charm, ability to attract someone, game (short for charisma)",
+    "example": "He's got so much rizz, everyone falls for him",
+    "translations": {
+      "ES": {
+        "definition": "Carisma, encanto, habilidad para atraer a alguien, labia. Abreviatura de 'charisma'. Palabra del año 2023 de Oxford.",
+        "example": "Tiene tanto carisma, todos caen por él"
+      },
+      "FR": {
+        "definition": "Charisme, charme, capacité à attirer quelqu'un, tchatche. Abréviation de 'charisma'. Mot de l'année 2023 d'Oxford.",
+        "example": "Il a tellement de charisme, tout le monde craque pour lui"
+      }
+    },
+    "meta": {
+      "thumbsUp": 0,
+      "thumbsDown": 0,
+      "author": "claude",
+      "addedOn": "2025-01-30"
+    }
+  },
+  {
+    "id": 40,
+    "term": "delulu",
+    "category": "CRITICISM",
+    "definition": "Delusional, having unrealistic hopes or beliefs (usually about relationships)",
+    "example": "She thinks he likes her back? She's so delulu",
+    "translations": {
+      "ES": {
+        "definition": "Delusional, tener esperanzas o creencias poco realistas. A menudo sobre relaciones o celebridades. 'Delulu is the solulu' = la ilusión te mantiene feliz.",
+        "example": "¿Cree que él también la quiere? Está muy delulu"
+      },
+      "FR": {
+        "definition": "Délirant, avoir des espoirs ou croyances irréalistes. Souvent sur les relations ou les célébrités. 'Delulu is the solulu' = l'illusion rend heureux.",
+        "example": "Elle croit qu'il l'aime aussi? Elle est trop delulu"
+      }
+    },
+    "meta": {
+      "thumbsUp": 0,
+      "thumbsDown": 0,
+      "author": "claude",
+      "addedOn": "2025-01-30"
+    }
+  },
+  {
+    "id": 41,
+    "term": "snatched",
+    "category": "PRAISE",
+    "definition": "Looking really good, on point, perfect (especially about appearance)",
+    "example": "Your eyebrows are snatched today!",
+    "translations": {
+      "ES": {
+        "definition": "Verse muy bien, perfecto, on point. Especialmente sobre apariencia, maquillaje, ropa. De la cultura drag.",
+        "example": "¡Tus cejas están perfectas hoy!"
+      },
+      "FR": {
+        "definition": "Avoir l'air super bien, parfait, au top. Surtout pour l'apparence, le maquillage, les vêtements. Vient de la culture drag.",
+        "example": "Tes sourcils sont parfaits aujourd'hui!"
+      }
+    },
+    "meta": {
+      "thumbsUp": 0,
+      "thumbsDown": 0,
+      "author": "claude",
+      "addedOn": "2025-01-30"
+    }
+  },
+  {
+    "id": 42,
+    "term": "tea",
+    "category": "OTHER",
+    "definition": "Gossip, drama, the inside scoop on what happened",
+    "example": "Spill the tea, what happened at the party?",
+    "translations": {
+      "ES": {
+        "definition": "Chisme, drama, la información de lo que pasó. 'Spill the tea' = cuenta el chisme. De la cultura drag.",
+        "example": "Suelta el chisme, ¿qué pasó en la fiesta?"
+      },
+      "FR": {
+        "definition": "Potins, drama, les infos sur ce qui s'est passé. 'Spill the tea' = balance les potins. Vient de la culture drag.",
+        "example": "Balance le thé, qu'est-ce qui s'est passé à la fête?"
+      }
+    },
+    "meta": {
+      "thumbsUp": 0,
+      "thumbsDown": 0,
+      "author": "claude",
+      "addedOn": "2025-01-30"
+    }
+  },
+  {
+    "id": 43,
+    "term": "ick",
+    "category": "EMOTION",
+    "definition": "A sudden feeling of disgust or turn-off about someone you were attracted to",
+    "example": "He chews with his mouth open, instant ick",
+    "translations": {
+      "ES": {
+        "definition": "Una sensación repentina de asco o rechazo hacia alguien que te atraía. Pequeñas cosas que matan la atracción.",
+        "example": "Mastica con la boca abierta, ick instantáneo"
+      },
+      "FR": {
+        "definition": "Un sentiment soudain de dégoût ou de rejet envers quelqu'un qui nous attirait. Petites choses qui tuent l'attraction.",
+        "example": "Il mâche la bouche ouverte, ick instantané"
+      }
+    },
+    "meta": {
+      "thumbsUp": 0,
+      "thumbsDown": 0,
+      "author": "claude",
+      "addedOn": "2025-01-30"
+    }
+  },
+  {
+    "id": 44,
+    "term": "sending me",
+    "category": "EMOTION",
+    "definition": "Making me laugh uncontrollably, so funny I can't handle it",
+    "example": "That meme is sending me, I can't stop laughing",
+    "translations": {
+      "ES": {
+        "definition": "Me hace reír incontrolablemente, tan gracioso que no puedo aguantar. Expresión de risa extrema.",
+        "example": "Ese meme me tiene muerta, no puedo parar de reír"
+      },
+      "FR": {
+        "definition": "Me fait rire de façon incontrôlable, tellement drôle que je peux pas gérer. Expression de rire extrême.",
+        "example": "Ce meme me tue, je peux pas arrêter de rire"
+      }
+    },
+    "meta": {
+      "thumbsUp": 0,
+      "thumbsDown": 0,
+      "author": "claude",
+      "addedOn": "2025-01-30"
+    }
+  },
+  {
+    "id": 45,
+    "term": "unalive",
+    "category": "OTHER",
+    "definition": "Euphemism for kill/die used to avoid content moderation on social media",
+    "example": "That jumpscare almost unalived me",
+    "translations": {
+      "ES": {
+        "definition": "Eufemismo para matar/morir usado para evitar censura en redes sociales. A menudo usado en broma para exagerar.",
+        "example": "Ese susto casi me desviví"
+      },
+      "FR": {
+        "definition": "Euphémisme pour tuer/mourir utilisé pour éviter la censure sur les réseaux sociaux. Souvent utilisé en blague pour exagérer.",
+        "example": "Ce jumpscare a failli me dévivre"
+      }
+    },
+    "meta": {
+      "thumbsUp": 0,
+      "thumbsDown": 0,
+      "author": "claude",
+      "addedOn": "2025-01-30"
+    }
+  },
+  {
+    "id": 46,
+    "term": "cheugy",
+    "category": "CRITICISM",
+    "definition": "Outdated, trying too hard to be trendy, no longer cool (usually millennial things)",
+    "example": "Live laugh love signs are so cheugy",
+    "translations": {
+      "ES": {
+        "definition": "Pasado de moda, tratando demasiado de ser trendy, ya no es cool. Generalmente describe cosas de millennials.",
+        "example": "Los letreros de 'Live Laugh Love' son muy cheugy"
+      },
+      "FR": {
+        "definition": "Démodé, essayant trop d'être tendance, plus cool. Décrit généralement des trucs de millennials.",
+        "example": "Les panneaux 'Live Laugh Love' c'est trop cheugy"
+      }
+    },
+    "meta": {
+      "thumbsUp": 0,
+      "thumbsDown": 0,
+      "author": "claude",
+      "addedOn": "2025-01-30"
+    }
+  },
+  {
+    "id": 47,
+    "term": "yeet",
+    "category": "OTHER",
+    "definition": "To throw something with force, or an exclamation of excitement",
+    "example": "He yeeted his phone across the room",
+    "translations": {
+      "ES": {
+        "definition": "Lanzar algo con fuerza, o una exclamación de emoción/energía. Puede ser verbo o interjección.",
+        "example": "Aventó su teléfono al otro lado del cuarto"
+      },
+      "FR": {
+        "definition": "Lancer quelque chose avec force, ou une exclamation d'excitation/énergie. Peut être verbe ou interjection.",
+        "example": "Il a balancé son téléphone à travers la pièce"
+      }
+    },
+    "meta": {
+      "thumbsUp": 0,
+      "thumbsDown": 0,
+      "author": "claude",
+      "addedOn": "2025-01-30"
+    }
+  },
+  {
+    "id": 48,
+    "term": "cap",
+    "category": "CRITICISM",
+    "definition": "A lie, something false, not true",
+    "example": "He said he's 6 feet tall, that's cap",
+    "translations": {
+      "ES": {
+        "definition": "Una mentira, algo falso, no es verdad. 'That's cap' = eso es mentira. Lo opuesto de 'no cap'.",
+        "example": "Dijo que mide 1.80, eso es mentira"
+      },
+      "FR": {
+        "definition": "Un mensonge, quelque chose de faux, pas vrai. 'That's cap' = c'est du mytho. L'opposé de 'no cap'.",
+        "example": "Il a dit qu'il fait 1m80, c'est du mytho"
+      }
+    },
+    "meta": {
+      "thumbsUp": 0,
+      "thumbsDown": 0,
+      "author": "claude",
+      "addedOn": "2025-01-30"
+    }
+  },
+  {
+    "id": 49,
+    "term": "sus",
+    "category": "CRITICISM",
+    "definition": "Suspicious, giving off untrustworthy vibes",
+    "example": "That link looks sus, don't click it",
+    "translations": {
+      "ES": {
+        "definition": "Sospechoso, da mala vibra, no confiable. Popularizado por Among Us pero ahora uso general.",
+        "example": "Ese link se ve sospechoso, no le des clic"
+      },
+      "FR": {
+        "definition": "Suspect, donne des mauvaises vibes, pas fiable. Popularisé par Among Us mais maintenant usage général.",
+        "example": "Ce lien a l'air suspect, clique pas dessus"
+      }
+    },
+    "meta": {
+      "thumbsUp": 0,
+      "thumbsDown": 0,
+      "author": "claude",
+      "addedOn": "2025-01-30"
+    }
+  }
+]
