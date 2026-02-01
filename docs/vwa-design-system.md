@@ -349,6 +349,74 @@ Vwa uses a constrained type system based on Apple's SF Pro family, optimized for
 
 ---
 
+**SwiftUI Implementation:**
+
+Reference implementation from [ios/Views/Components/TermCardView.swift](ios/Views/Components/TermCardView.swift):
+
+```swift
+// Display Large - Hero Terms
+Text(term.uppercased())
+    .font(.system(size: 42, weight: .black, design: .default))
+    .tracking(-2)
+    .foregroundColor(colors.text)
+
+// Body Large - Definitions
+Text(definition)
+    .font(.system(size: 16, weight: .regular, design: .default))
+    .lineSpacing(8)  // 1.5 line height ≈ 8pt spacing for 16pt font
+    .foregroundColor(colors.text)
+
+// Label - Category Tags
+Text(category.rawValue)
+    .font(.system(size: 10, weight: .heavy, design: .default))
+    .tracking(1)
+    .textCase(.uppercase)
+    .foregroundColor(colors.accent)
+
+// Mono - Metadata
+Text("Added: \(date)")
+    .font(.system(size: 13, weight: .regular, design: .monospaced))
+    .foregroundColor(colors.textMuted)
+```
+
+**Font Extension Pattern (Optional):**
+
+For reusability across the app, create font extensions:
+
+```swift
+extension Font {
+    static var typeDisplayLg: Font {
+        .system(size: 42, weight: .black, design: .default)
+    }
+
+    static var typeBodyLg: Font {
+        .system(size: 16, weight: .regular, design: .default)
+    }
+
+    static var typeLabel: Font {
+        .system(size: 10, weight: .heavy, design: .default)
+    }
+
+    static var typeMono: Font {
+        .system(size: 13, weight: .regular, design: .monospaced)
+    }
+}
+
+// Usage
+Text("NO CAP")
+    .font(.typeDisplayLg)
+    .tracking(-2)
+```
+
+**Key SwiftUI Typography APIs:**
+- `.font(.system(size:weight:design:))` - Font specification
+- `.tracking()` - Letter spacing in points
+- `.lineSpacing()` - Additional line spacing
+- `.textCase(.uppercase)` - Text transformation
+- `.foregroundColor()` - Text color
+
+---
+
 # 5. Spacing & Layout
 
 ## 5.1 Spacing Scale
@@ -715,54 +783,154 @@ Full-width button linking to directory view.
 
 ### Button Press
 
-When a user presses a button:
+When a user presses a button, use the **BrutalButtonStyle** pattern ([ios/Views/Components/BrutalButton.swift](ios/Views/Components/BrutalButton.swift)):
 
-1. Immediately (75ms) translate the button 2px right and 2px down
-2. Reduce shadow from `shadow-md` to `shadow-pressed`
+1. Immediately (75ms) translate the button right and down
+2. Reduce shadow from 4px to 1px
 3. On release, return to original position with same timing
 
-```css
-.button {
-  transition: transform 75ms ease, box-shadow 75ms ease;
+```swift
+struct BrutalButtonStyle: ButtonStyle {
+    let colors: AppColors
+    let small: Bool
+
+    func makeBody(configuration: Configuration) -> some View {
+        let offset: CGFloat = configuration.isPressed ? 1 : 0
+        let shadowOffset: CGFloat = configuration.isPressed ? 1 : (small ? 2 : 4)
+
+        configuration.label
+            .offset(x: offset, y: offset)
+            .shadow(
+                color: colors.shadow,
+                radius: 0,
+                x: shadowOffset,
+                y: shadowOffset
+            )
+            .animation(.easeOut(duration: 0.075), value: configuration.isPressed)
+    }
 }
 
-.button:active {
-  transform: translate(2px, 2px);
-  box-shadow: 1px 1px 0px var(--shadow-color);
+// Usage
+Button(action: { }) {
+    Text("NEXT")
 }
+.buttonStyle(BrutalButtonStyle(colors: colors, small: false))
 ```
 
 ### Card Transition (Phrase Change)
 
-When navigating between phrases:
+When navigating between phrases, use opacity transitions:
 
-1. Current card: Scale to 0.98, translateY 4px, opacity 0.7 (200ms)
-2. Update content
-3. New card: Return to scale 1, translateY 0, opacity 1 (200ms)
+```swift
+@State private var contentOpacity: Double = 1.0
+
+// On navigation
+withAnimation(.easeInOut(duration: 0.2)) {
+    contentOpacity = 0
+}
+
+DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+    store.nextTerm()
+    withAnimation(.easeInOut(duration: 0.2)) {
+        contentOpacity = 1.0
+    }
+}
+
+// Apply to card
+TermCardView(...)
+    .opacity(contentOpacity)
+```
 
 ### Waveform Animation
 
-During audio playback:
+Audio visualization using sine-wave based animation ([ios/Views/Components/ListeningIndicator.swift](ios/Views/Components/ListeningIndicator.swift)):
 
-1. Every 80ms, generate 16 random heights between 4px and 24px
-2. Apply heights to bars with 80ms transition
-3. On stop, transition all bars to 4px over 300ms
+```swift
+struct ListeningIndicator: View {
+    @State private var animationPhase: Double = 0
+
+    var body: some View {
+        HStack(spacing: 4) {
+            ForEach(0..<8, id: \.self) { index in
+                RoundedRectangle(cornerRadius: 2)
+                    .fill(colors.primary)
+                    .frame(width: 3)
+                    .frame(height: barHeight(for: index))
+            }
+        }
+        .onAppear {
+            withAnimation(.linear(duration: 0.8).repeatForever(autoreverses: false)) {
+                animationPhase = 2 * .pi
+            }
+        }
+    }
+
+    func barHeight(for index: Int) -> CGFloat {
+        let phase = animationPhase + Double(index) * .pi / 4
+        return 8 + abs(sin(phase)) * 12  // 8-20pt range
+    }
+}
+```
 
 ### Progress Bar Update
 
-When phrase index changes:
+When phrase index changes, use discrete segments with accent highlights:
 
-1. Previous active segment: Shrink flex from 3 to 1 (200ms)
-2. New active segment: Grow flex from 1 to 3 (200ms)
-3. Color updates immediately (no transition)
+```swift
+HStack(spacing: 4) {
+    ForEach(0..<totalTerms, id: \.self) { index in
+        Rectangle()
+            .fill(index == currentIndex ? colors.accent : colors.border)
+            .frame(height: 3)
+            .frame(maxWidth: index == currentIndex ? 24 : 8)
+    }
+}
+.animation(.easeOut(duration: 0.2), value: currentIndex)
+```
 
 ### Screen Transitions
 
-Navigation between screens should use standard iOS patterns:
+Navigation between screens uses standard iOS patterns:
 
-- Push: New screen slides in from right
-- Pop: Current screen slides out to right
-- Modal: Sheet rises from bottom
+**Push/Pop Navigation (iOS 15 compatible):**
+```swift
+NavigationView {
+    MainView()
+        .navigationBarHidden(true)
+}
+.navigationViewStyle(.stack)
+```
+
+**Modal Sheet Presentation:**
+```swift
+@State private var showBrowse = false
+
+Button("Browse") {
+    showBrowse = true
+}
+.sheet(isPresented: $showBrowse) {
+    BrowseView()
+}
+```
+
+**State-Based Transitions:**
+```swift
+// Fade in/out
+Text("Listening...")
+    .opacity(isRecording ? 1 : 0)
+    .animation(.easeInOut(duration: 0.2), value: isRecording)
+
+// Conditional view swap
+if isRecording {
+    ListeningIndicator(colors: colors)
+        .transition(.opacity)
+} else {
+    TermCardView(...)
+        .transition(.opacity)
+}
+```
+
+**Note:** SwiftUI animations are hardware-accelerated by default. Use `.animation()` modifier with value-based triggers for optimal performance.
 
 ---
 
@@ -809,32 +977,6 @@ All interactive elements must have a minimum touch target of 44x44 points (iOS H
 - Category: Announce as "Category: [value]"
 - Progress: Announce as "Phrase [current] of [total]"
 - Playback: Announce button state ("Play" / "Pause")
-
-### Example Accessibility Labels
-
-```jsx
-// Term card
-<View accessibilityRole="header" accessibilityLevel={1}>
-  <Text>NO CAP</Text>
-</View>
-
-// Progress indicator
-<View
-  accessibilityRole="text"
-  accessibilityLabel={`Phrase ${currentIndex + 1} of ${total}`}
->
-  {/* Visual progress bar */}
-</View>
-
-// Play button
-<TouchableOpacity
-  accessibilityRole="button"
-  accessibilityLabel={isPlaying ? "Pause audio" : "Play audio"}
-  accessibilityState={{ selected: isPlaying }}
->
-  {/* Icon */}
-</TouchableOpacity>
-```
 
 ## 9.4 Motion Sensitivity
 
@@ -1008,132 +1150,411 @@ Support Dynamic Type (iOS) with the following constraints:
 
 ## 11.1 Technology Stack (Recommended)
 
-| Layer          | Technology                     | Rationale                          |
-| -------------- | ------------------------------ | ---------------------------------- |
-| **Framework**  | React Native                   | Cross-platform, strong iOS support |
-| **Styling**    | StyleSheet (RN) or Tailwind RN | Performance, design token mapping  |
-| **State**      | Zustand or Context             | Simple, sufficient for app scope   |
-| **Audio**      | expo-av                        | Reliable TTS playback              |
-| **Navigation** | React Navigation               | Standard, well-documented          |
+| Layer                | Technology                              | Rationale                                      |
+| -------------------- | --------------------------------------- | ---------------------------------------------- |
+| **Framework**        | SwiftUI                                 | Native performance, modern declarative UI      |
+| **State Management** | Combine (ObservableObject + @Published) | iOS 13+ compatible, built-in reactive pattern  |
+| **Navigation**       | NavigationView                          | iOS 15+ compatible (broader device support)    |
+| **Voice Input**      | Speech.framework (SFSpeechRecognizer)   | Free, on-device, low latency                   |
+| **Search**           | Custom Levenshtein + Phonetic matching  | Full control, optimized for 49 terms           |
+| **Data Persistence** | UserDefaults                            | Simple key-value storage for preferences       |
+| **Data Format**      | Codable JSON                            | Type-safe, built-in Swift serialization        |
+| **Theme System**     | Custom AppColors struct                 | Centralized design tokens matching Section 3   |
+
+**Note:** All technologies support iOS 15+, ensuring broad device compatibility while leveraging modern Swift patterns. The architecture follows MVVM (Model-View-ViewModel) principles with clean separation between business logic, state management, and UI components.
 
 ## 11.2 Design Token Implementation
 
-Create a centralized theme file:
+Create a centralized design token system using Swift structs. Implementation can be found in [ios/Theme/Colors.swift](ios/Theme/Colors.swift).
 
-```typescript
-// theme.ts
-export const colors = {
-  dark: {
-    bg: '#0D0D0D',
-    surface: '#1A1A1A',
-    surfaceRaised: '#242424',
-    border: '#333333',
-    borderStrong: '#FFFFFF',
-    text: '#FFFFFF',
-    textSecondary: '#A3A3A3',
-    textMuted: '#666666',
-    primary: '#FF6B00',
-    accent: '#FFE600',
-    shadow: '#000000',
-  },
-  light: {
-    bg: '#F5F5F0',
-    surface: '#FFFFFF',
-    surfaceRaised: '#FFFFFF',
-    border: '#E0E0E0',
-    borderStrong: '#0D0D0D',
-    text: '#0D0D0D',
-    textSecondary: '#525252',
-    textMuted: '#858585',
-    primary: '#FF5500',
-    accent: '#FFD600',
-    shadow: '#0D0D0D',
-  },
+### Color Tokens
+
+```swift
+// AppColors.swift
+import SwiftUI
+
+struct AppColors {
+    let bg: Color
+    let surface: Color
+    let surfaceRaised: Color
+    let border: Color
+    let borderStrong: Color
+    let text: Color
+    let textSecondary: Color
+    let textMuted: Color
+    let primary: Color
+    let accent: Color
+    let shadow: Color
+
+    static let dark = AppColors(
+        bg: Color(hex: "0D0D0D"),
+        surface: Color(hex: "1A1A1A"),
+        surfaceRaised: Color(hex: "242424"),
+        border: Color(hex: "333333"),
+        borderStrong: .white,
+        text: .white,
+        textSecondary: Color(hex: "A3A3A3"),
+        textMuted: Color(hex: "666666"),
+        primary: Color(hex: "FF6B00"),
+        accent: Color(hex: "FFE600"),
+        shadow: .black
+    )
+
+    static let light = AppColors(
+        bg: Color(hex: "F5F5F0"),
+        surface: .white,
+        surfaceRaised: .white,
+        border: Color(hex: "E0E0E0"),
+        borderStrong: Color(hex: "0D0D0D"),
+        text: Color(hex: "0D0D0D"),
+        textSecondary: Color(hex: "525252"),
+        textMuted: Color(hex: "858585"),
+        primary: Color(hex: "FF5500"),
+        accent: Color(hex: "FFD600"),
+        shadow: Color(hex: "0D0D0D")
+    )
+
+    static func forTheme(_ theme: Theme) -> AppColors {
+        theme == .dark ? .dark : .light
+    }
 }
 
-export const spacing = {
-  0: 0,
-  1: 4,
-  2: 8,
-  3: 12,
-  4: 16,
-  5: 20,
-  6: 24,
-  8: 32,
-  10: 40,
-}
-
-export const typography = {
-  displayLg: {
-    fontFamily: 'SF Pro Display',
-    fontSize: 42,
-    fontWeight: '900',
-    lineHeight: 42,
-    letterSpacing: -2,
-  },
-  // ... rest of scale
-}
-
-export const shadows = {
-  sm: (isDark: boolean) => ({
-    shadowColor: isDark ? '#000' : '#0D0D0D',
-    shadowOffset: { width: 2, height: 2 },
-    shadowOpacity: 1,
-    shadowRadius: 0,
-    elevation: 2,
-  }),
-  md: (isDark: boolean) => ({
-    shadowColor: isDark ? '#000' : '#0D0D0D',
-    shadowOffset: { width: 4, height: 4 },
-    shadowOpacity: 1,
-    shadowRadius: 0,
-    elevation: 4,
-  }),
+// Color Hex Extension
+extension Color {
+    init(hex: String) {
+        let hex = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
+        var int: UInt64 = 0
+        Scanner(string: hex).scanHexInt64(&int)
+        let a, r, g, b: UInt64
+        switch hex.count {
+        case 3:
+            (a, r, g, b) = (255, (int >> 8) * 17, (int >> 4 & 0xF) * 17, (int & 0xF) * 17)
+        case 6:
+            (a, r, g, b) = (255, int >> 16, int >> 8 & 0xFF, int & 0xFF)
+        case 8:
+            (a, r, g, b) = (int >> 24, int >> 16 & 0xFF, int >> 8 & 0xFF, int & 0xFF)
+        default:
+            (a, r, g, b) = (255, 0, 0, 0)
+        }
+        self.init(
+            .sRGB,
+            red: Double(r) / 255,
+            green: Double(g) / 255,
+            blue: Double(b) / 255,
+            opacity: Double(a) / 255
+        )
+    }
 }
 ```
+
+### Spacing Tokens
+
+```swift
+// Spacing constants
+extension CGFloat {
+    static let space0: CGFloat = 0
+    static let space1: CGFloat = 4
+    static let space2: CGFloat = 8
+    static let space3: CGFloat = 12
+    static let space4: CGFloat = 16
+    static let space5: CGFloat = 20
+    static let space6: CGFloat = 24
+    static let space8: CGFloat = 32
+    static let space10: CGFloat = 40
+}
+```
+
+### Shadow Tokens
+
+SwiftUI uses the `.shadow()` modifier with hard shadows (no blur radius):
+
+```swift
+// Hard shadow (Neo-Brutalist style)
+.shadow(
+    color: colors.shadow,
+    radius: 0,        // No blur
+    x: 4,             // Horizontal offset
+    y: 4              // Vertical offset
+)
+
+// Pressed state shadow (smaller)
+.shadow(color: colors.shadow, radius: 0, x: 2, y: 2)
+```
+
+### Usage in Views
+
+Access theme-aware colors through the app's theme state:
+
+```swift
+struct MyView: View {
+    @EnvironmentObject var store: TermStore
+
+    var colors: AppColors {
+        AppColors.forTheme(store.theme)
+    }
+
+    var body: some View {
+        Text("Hello")
+            .foregroundColor(colors.text)
+            .background(colors.surface)
+    }
+}
+```
+
+**Note:** All hex color values match Section 3 (Color System) exactly, ensuring perfect alignment between design tokens and implementation.
 
 ## 11.3 Component Architecture
 
-Follow atomic design principles:
+The app follows **MVVM (Model-View-ViewModel)** architecture with clean separation of concerns. Components are organized by responsibility, not by size (atomic design).
+
+### Directory Structure
 
 ```
-components/
-â”œâ”€â”€ atoms/
-â”‚   â”œâ”€â”€ Button/
-â”‚   â”œâ”€â”€ Tag/
-â”‚   â”œâ”€â”€ Icon/
-â”‚   â””â”€â”€ Text/
-â”œâ”€â”€ molecules/
-â”‚   â”œâ”€â”€ SearchInput/
-â”‚   â”œâ”€â”€ ProgressBar/
-â”‚   â”œâ”€â”€ Waveform/
-â”‚   â””â”€â”€ LanguageToggle/
-â”œâ”€â”€ organisms/
-â”‚   â”œâ”€â”€ PhraseCard/
-â”‚   â”œâ”€â”€ ListItem/
-â”‚   â””â”€â”€ PlaybackControls/
-â””â”€â”€ templates/
-    â”œâ”€â”€ TTSScreen/
-    â””â”€â”€ BrowseScreen/
+ios/
+├── Models/              # Pure data structures (Codable, Identifiable)
+│   ├── SlangTerm.swift  # Core domain model with translations
+│   ├── Category.swift   # Term category enum (TRUTH, PRAISE, etc.)
+│   ├── Language.swift   # ES/FR language enum
+│   └── Theme.swift      # Dark/Light theme enum
+├── ViewModels/          # State management layer
+│   └── TermStore.swift  # ObservableObject with @Published properties
+├── Views/               # SwiftUI components (declarative UI only)
+│   ├── MainView.swift   # Primary term display screen
+│   ├── BrowseView.swift # Search and browse screen
+│   └── Components/      # Reusable UI components
+│       ├── BrutalButton.swift
+│       ├── TermCardView.swift
+│       ├── LanguageToggle.swift
+│       ├── SearchBar.swift
+│       ├── ProgressIndicator.swift
+│       ├── ListeningIndicator.swift
+│       ├── NoMatchView.swift
+│       └── VoiceErrorView.swift
+├── Services/            # External integrations & business logic
+│   ├── SpeechRecognizer.swift  # iOS Speech framework wrapper
+│   └── TermSearch.swift        # Fuzzy search & phonetic matching
+└── Theme/               # Design system implementation
+    ├── Colors.swift            # AppColors struct
+    └── BrutalModifiers.swift   # Custom view modifiers
 ```
+
+### MVVM Pattern
+
+**Models** are pure data:
+```swift
+struct SlangTerm: Codable, Identifiable {
+    let id: Int
+    let term: String
+    let category: Category
+    let definition: String
+    // ...
+}
+```
+
+**ViewModels** manage state with `ObservableObject` ([ios/ViewModels/TermStore.swift](ios/ViewModels/TermStore.swift)):
+```swift
+class TermStore: ObservableObject {
+    @Published var terms: [SlangTerm] = []
+    @Published var currentIndex: Int = 0
+    @Published var language: Language = .ES
+    @Published var theme: Theme = .dark
+
+    var currentTerm: SlangTerm? {
+        // Computed properties for derived state
+    }
+
+    func nextTerm() { /* Navigation logic */ }
+}
+```
+
+**Views** are declarative and stateless:
+```swift
+struct TermCardView: View {
+    let term: SlangTerm
+    let language: Language
+    let colors: AppColors
+    // ... receives data as parameters, no internal state
+
+    var body: some View {
+        // Pure UI composition
+    }
+}
+```
+
+**Services** handle external dependencies:
+```swift
+class SpeechRecognizer: ObservableObject {
+    @Published var transcript: String = ""
+    @Published var isRecording: Bool = false
+    // Encapsulates iOS Speech framework
+}
+```
+
+### Reusable Styling
+
+Custom view modifiers enable consistent styling ([ios/Theme/BrutalModifiers.swift](ios/Theme/BrutalModifiers.swift)):
+
+```swift
+// Definition
+struct BrutalCard: ViewModifier {
+    let colors: AppColors
+    let borderWidth: CGFloat
+    let shadowOffset: CGFloat
+
+    func body(content: Content) -> some View {
+        content
+            .background(colors.surface)
+            .overlay(Rectangle().stroke(colors.borderStrong, lineWidth: borderWidth))
+            .shadow(color: colors.shadow, radius: 0, x: shadowOffset, y: shadowOffset)
+    }
+}
+
+// Extension for easy usage
+extension View {
+    func brutalistCard(_ colors: AppColors, heavy: Bool = false) -> some View {
+        modifier(BrutalCard(colors: colors, heavy: heavy))
+    }
+}
+
+// Usage
+Text("Content")
+    .brutalistCard(colors, heavy: true)
+```
+
+This architecture ensures:
+- **Testability** – Business logic is isolated from UI
+- **Reusability** – Components are composable and stateless
+- **Maintainability** – Clear separation of concerns
+- **Type Safety** – Swift's strong typing prevents common errors
 
 ## 11.4 Performance Guidelines
 
-1. **Memoize expensive components** â€” Use `React.memo` for list items
-2. **Optimize waveform animation** â€” Use `useNativeDriver: true` where possible
-3. **Lazy load screens** â€” Use React Navigation's lazy loading
-4. **Image optimization** â€” Pre-scale any images to exact display size
-5. **Reduce re-renders** â€” Use callback refs and stable references
+**SwiftUI optimization patterns for native iOS performance:**
+
+1. **LazyVStack for long lists** – Use `LazyVStack` in browse views to load items on-demand:
+   ```swift
+   LazyVStack(spacing: 12) {
+       ForEach(filteredTerms) { term in
+           TermCardView(term: term)
+       }
+   }
+   ```
+
+2. **Debounced search** – Prevent lag with 300ms debounce ([ios/Views/Components/SearchBar.swift](ios/Views/Components/SearchBar.swift)):
+   ```swift
+   .onChange(of: searchText) { newValue in
+       debounceTask?.cancel()
+       debounceTask = Task {
+           try? await Task.sleep(nanoseconds: 300_000_000)
+           if !Task.isCancelled {
+               onSearchChange(newValue)
+           }
+       }
+   }
+   ```
+
+3. **@StateObject vs @ObservedObject** – Use `@StateObject` for ownership, `@ObservedObject` for passing down:
+   ```swift
+   @StateObject private var store = TermStore()  // Create
+   @ObservedObject var store: TermStore          // Receive
+   ```
+
+4. **Extracted computed properties** – Reduce body recalculations by moving logic to computed properties
+
+5. **Equatable conformance** – Enable view diffing for expensive views:
+   ```swift
+   struct SlangTerm: Equatable { }
+   ```
+
+6. **SF Symbols** – Use built-in, optimized icons instead of custom images
+
+**Performance targets:**
+- Cold start: < 2s (Native Swift, bundled JSON)
+- Voice latency: < 3s (1.5s silence detection + processing)
+- Search: < 100ms (Levenshtein on 49 terms)
+- Memory: < 150MB (Native iOS)
+
+**Profiling:** Use Xcode Instruments (Time Profiler, Allocations) to identify bottlenecks
 
 ## 11.5 Testing Requirements
 
-| Test Type         | Coverage Target     | Tools                 |
-| ----------------- | ------------------- | --------------------- |
-| Unit              | 80% for utilities   | Jest                  |
-| Component         | All atoms/molecules | React Testing Library |
-| Integration       | Critical user flows | Detox                 |
-| Accessibility     | All screens         | axe, manual VoiceOver |
-| Visual Regression | All components      | Chromatic or Percy    |
+| Test Type           | Coverage Target             | Tools                                          |
+| ------------------- | --------------------------- | ---------------------------------------------- |
+| Unit                | 80% for services/utilities  | XCTest                                         |
+| View Testing        | All reusable components     | SwiftUI Previews + #Preview macro              |
+| UI Testing          | Critical user flows         | XCUITest                                       |
+| Accessibility       | All screens                 | Accessibility Inspector (Xcode), VoiceOver     |
+| Visual Regression   | All components              | Swift Snapshot Testing (optional)              |
+
+### SwiftUI Previews for Component Testing
+
+Use the `#Preview` macro (iOS 17+) or `PreviewProvider` (iOS 15+) for rapid component iteration:
+
+```swift
+#Preview("Term Card - Dark Mode") {
+    TermCardView(
+        term: .mockNoCap,
+        language: .ES,
+        colors: .dark,
+        currentIndex: 0,
+        totalTerms: 49
+    )
+    .preferredColorScheme(.dark)
+}
+
+#Preview("Term Card - Light Mode") {
+    TermCardView(
+        term: .mockNoCap,
+        language: .ES,
+        colors: .light,
+        currentIndex: 0,
+        totalTerms: 49
+    )
+    .preferredColorScheme(.light)
+}
+```
+
+### Unit Testing with XCTest
+
+Test business logic and utilities in isolation:
+
+```swift
+class TermSearchTests: XCTestCase {
+    func testFuzzyMatch() {
+        let search = TermSearch()
+        XCTAssertTrue(search.matches("no cap", query: "nocap"))
+        XCTAssertTrue(search.matches("no cap", query: "no cat"))  // Phonetic
+    }
+
+    func testTranscriptionCorrections() {
+        let search = TermSearch()
+        XCTAssertTrue(search.matches("bussin", query: "bussing"))
+    }
+}
+
+class TermStoreTests: XCTestCase {
+    func testNavigationWrapAround() {
+        let store = TermStore()
+        store.currentIndex = store.termCount - 1
+        store.nextTerm()
+        XCTAssertEqual(store.currentIndex, 0)
+    }
+}
+```
+
+### Manual Testing Checklist
+
+Critical flows to verify on physical device:
+
+- [ ] Voice recognition accuracy (physical device required for Speech framework)
+- [ ] All 49 terms searchable by voice and text
+- [ ] Browse view search filtering with debounce
+- [ ] Language toggle (ES/FR) updates translations
+- [ ] Theme toggle (Dark/Light) updates colors
+- [ ] VoiceOver support for all interactive elements
+- [ ] Dynamic Type scaling (Settings → Accessibility → Display & Text Size)
+- [ ] Offline functionality (airplane mode)
+- [ ] Permission denial handling (microphone access)
 
 ---
 
