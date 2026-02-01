@@ -28,7 +28,7 @@ struct MainView: View {
     }
 
     var body: some View {
-        NavigationStack {
+        NavigationView {
             ZStack {
                 colors.bg.ignoresSafeArea()
 
@@ -38,10 +38,16 @@ struct MainView: View {
                     controlsView
                     browseButton
                 }
-            }
-            .navigationDestination(isPresented: $showBrowse) {
-                BrowseView()
-                    .environmentObject(store)
+
+                // Hidden NavigationLink for iOS 15 compatibility
+                NavigationLink(
+                    destination: BrowseView()
+                        .environmentObject(store),
+                    isActive: $showBrowse
+                ) {
+                    EmptyView()
+                }
+                .hidden()
             }
             .onAppear {
                 if speechRecognizer.authorizationStatus == .notDetermined {
@@ -57,6 +63,7 @@ struct MainView: View {
                 }
             }
         }
+        .navigationViewStyle(.stack)
     }
 
     // MARK: - Header
