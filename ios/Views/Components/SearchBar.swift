@@ -17,7 +17,7 @@ struct SearchBar: View {
     }
 
     var body: some View {
-        HStack(spacing: 12) {
+        HStack(spacing: .space3) {
             Image(systemName: "magnifyingglass")
                 .font(.system(size: 18, weight: .medium))
                 .foregroundColor(colors.textMuted)
@@ -27,6 +27,7 @@ struct SearchBar: View {
                 .foregroundColor(colors.text)
                 .autocorrectionDisabled()
                 .textInputAutocapitalization(.never)
+                .accessibilityHint("Type to search for slang terms")
                 .onChangeCompat(of: localText) { newValue in
                     debounceSearch(newValue)
                 }
@@ -38,17 +39,19 @@ struct SearchBar: View {
                     debounceTask?.cancel()
                 } label: {
                     Image(systemName: "xmark")
-                        .font(.system(size: 12, weight: .bold))
+                        .font(.system(size: 10, weight: .bold))  // Reduced from 12 to keep visual size
                         .foregroundColor(colors.surface)
-                        .frame(width: 24, height: 24)
+                        .frame(width: .touchTargetMin, height: .touchTargetMin)
                         .background(colors.textMuted)
                 }
+                .accessibilityLabel("Clear search")
+                .accessibilityHint("Clears the search field")
             }
         }
-        .padding(12)
+        .padding(.space3)
         .background(colors.surface)
-        .overlay(Rectangle().stroke(colors.borderStrong, lineWidth: 2))
-        .shadow(color: colors.shadow, radius: 0, x: 2, y: 2)
+        .overlay(Rectangle().stroke(colors.borderStrong, lineWidth: .borderStandard))
+        .brutalShadowSm(colors)
     }
 
     private func debounceSearch(_ query: String) {

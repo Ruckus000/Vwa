@@ -5,7 +5,7 @@ struct LanguageToggle: View {
     let colors: AppColors
 
     var body: some View {
-        HStack(spacing: 0) {
+        HStack(spacing: .space0) {
             ForEach(Language.allCases, id: \.self) { lang in
                 Button {
                     language = lang
@@ -16,16 +16,20 @@ struct LanguageToggle: View {
                         .frame(width: 50, height: 36)
                         .background(language == lang ? colors.primary : Color.clear)
                 }
+                .accessibilityLabel("\(lang.displayName) translation")
+                .accessibilityHint("Switch to \(lang.displayName) translations")
+                .accessibilityAddTraits(language == lang ? [.isSelected] : [])
 
                 if lang == .ES {
                     Rectangle()
                         .fill(colors.borderStrong)
-                        .frame(width: 2)
+                        .frame(width: .borderStandard)
                 }
             }
         }
+        .accessibilityElement(children: .contain)
         .background(colors.surface)
-        .overlay(Rectangle().stroke(colors.borderStrong, lineWidth: 2))
-        .shadow(color: colors.shadow, radius: 0, x: 2, y: 2)
+        .overlay(Rectangle().stroke(colors.borderStrong, lineWidth: .borderStandard))
+        .brutalShadowSm(colors)
     }
 }

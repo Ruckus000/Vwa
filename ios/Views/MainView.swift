@@ -32,7 +32,7 @@ struct MainView: View {
             ZStack {
                 colors.bg.ignoresSafeArea()
 
-                VStack(spacing: 0) {
+                VStack(spacing: .space0) {
                     headerView
                     contentArea
                     controlsView
@@ -71,23 +71,25 @@ struct MainView: View {
     private var headerView: some View {
         HStack {
             // Logo
-            HStack(spacing: 8) {
+            HStack(spacing: .space2) {
                 ZStack {
                     Rectangle()
                         .fill(colors.primary)
-                        .frame(width: 32, height: 32)
-                        .overlay(Rectangle().stroke(colors.borderStrong, lineWidth: 2))
+                        .frame(width: .space8, height: .space8)
+                        .overlay(Rectangle().stroke(colors.borderStrong, lineWidth: .borderStandard))
 
                     Text("V")
                         .font(.system(size: 16, weight: .black))
                         .foregroundColor(.white)
                 }
-                .shadow(color: colors.shadow, radius: 0, x: 2, y: 2)
+                .brutalShadowSm(colors)
+                .accessibilityLabel("VWA logo")
+                .accessibilityAddTraits(.isImage)
 
                 Text("VWA")
-                    .font(.system(size: 20, weight: .black))
+                    .font(.typeHeading)
                     .foregroundColor(colors.text)
-                    .tracking(-1)
+                    .tracking(.trackingNormal)
             }
 
             Spacer()
@@ -99,8 +101,11 @@ struct MainView: View {
                 Image(systemName: store.theme == .dark ? "sun.max.fill" : "moon.fill")
                     .font(.system(size: 18))
                     .foregroundColor(colors.text)
+                    .frame(width: .touchTargetMin, height: .touchTargetMin)
             }
-            .padding(.trailing, 12)
+            .accessibilityLabel("Toggle theme. Current: \(store.theme == .dark ? "dark" : "light")")
+            .accessibilityHint("Switches between light and dark mode")
+            .padding(.trailing, .space3)
 
             // Language Toggle
             LanguageToggle(
@@ -108,8 +113,8 @@ struct MainView: View {
                 colors: colors
             )
         }
-        .padding(.horizontal, 20)
-        .padding(.vertical, 8)
+        .padding(.horizontal, .space5)
+        .padding(.vertical, .space2)
     }
 
     // MARK: - Content Area
@@ -129,14 +134,14 @@ struct MainView: View {
                     currentIndex: store.currentIndex,
                     totalTerms: store.termCount
                 )
-                .padding(.horizontal, 20)
-                .padding(.bottom, 16)
+                .padding(.horizontal, .space5)
+                .padding(.bottom, .space4)
             }
 
             // Listening
             if speechRecognizer.isRecording {
                 ListeningIndicator(colors: colors)
-                    .padding(.horizontal, 20)
+                    .padding(.horizontal, .space5)
             }
 
             // Voice error
@@ -152,7 +157,7 @@ struct MainView: View {
                         speechRecognizer.clearError()
                     }
                 )
-                .padding(.horizontal, 20)
+                .padding(.horizontal, .space5)
             }
 
             // No match
@@ -169,7 +174,7 @@ struct MainView: View {
                         speechRecognizer.startRecording()
                     }
                 )
-                .padding(.horizontal, 20)
+                .padding(.horizontal, .space5)
             }
 
             // Load error
@@ -178,7 +183,7 @@ struct MainView: View {
                     message: loadError,
                     colors: colors
                 )
-                .padding(.horizontal, 20)
+                .padding(.horizontal, .space5)
             }
         }
         .frame(maxHeight: .infinity)
@@ -187,7 +192,7 @@ struct MainView: View {
     // MARK: - Controls
 
     private var controlsView: some View {
-        HStack(spacing: 16) {
+        HStack(spacing: .space4) {
             // Previous
             BrutalButton(colors: colors, small: true) {
                 store.prevTerm()
@@ -197,8 +202,10 @@ struct MainView: View {
                     .foregroundColor(colors.text)
                     .frame(width: 48, height: 48)
                     .background(colors.surface)
-                    .overlay(Rectangle().stroke(colors.borderStrong, lineWidth: 2))
+                    .overlay(Rectangle().stroke(colors.borderStrong, lineWidth: .borderStandard))
             }
+            .accessibilityLabel("Previous phrase")
+            .accessibilityHint("Go to previous slang term")
 
             // Microphone
             BrutalButton(colors: colors) {
@@ -215,8 +222,10 @@ struct MainView: View {
                     .foregroundColor(.white)
                     .frame(width: 72, height: 72)
                     .background(speechRecognizer.isRecording ? Color.red : colors.primary)
-                    .overlay(Rectangle().stroke(colors.borderStrong, lineWidth: 3))
+                    .overlay(Rectangle().stroke(colors.borderStrong, lineWidth: .borderHeavy))
             }
+            .accessibilityLabel(speechRecognizer.isRecording ? "Stop recording" : "Start voice search")
+            .accessibilityHint("Tap to \(speechRecognizer.isRecording ? "stop" : "start") voice search for slang terms")
 
             // Next
             BrutalButton(colors: colors, small: true) {
@@ -227,11 +236,13 @@ struct MainView: View {
                     .foregroundColor(colors.text)
                     .frame(width: 48, height: 48)
                     .background(colors.surface)
-                    .overlay(Rectangle().stroke(colors.borderStrong, lineWidth: 2))
+                    .overlay(Rectangle().stroke(colors.borderStrong, lineWidth: .borderStandard))
             }
+            .accessibilityLabel("Next phrase")
+            .accessibilityHint("Go to next slang term")
         }
-        .padding(.horizontal, 20)
-        .padding(.bottom, 12)
+        .padding(.horizontal, .space5)
+        .padding(.bottom, .space3)
     }
 
     // MARK: - Browse Button
@@ -258,10 +269,12 @@ struct MainView: View {
             .padding(14)
             .frame(maxWidth: .infinity)
             .background(colors.surface)
-            .overlay(Rectangle().stroke(colors.borderStrong, lineWidth: 2))
+            .overlay(Rectangle().stroke(colors.borderStrong, lineWidth: .borderStandard))
         }
-        .padding(.horizontal, 20)
-        .padding(.bottom, 24)
+        .accessibilityLabel("Browse all phrases")
+        .accessibilityHint("View searchable list of all slang terms")
+        .padding(.horizontal, .space5)
+        .padding(.bottom, .space6)
     }
 
     // MARK: - Voice Handling
@@ -287,7 +300,7 @@ struct DataErrorView: View {
     let colors: AppColors
 
     var body: some View {
-        VStack(spacing: 16) {
+        VStack(spacing: .space4) {
             Image(systemName: "exclamationmark.triangle")
                 .font(.system(size: 32))
                 .foregroundColor(colors.primary)
@@ -295,7 +308,7 @@ struct DataErrorView: View {
             Text("DATA ERROR")
                 .font(.system(size: 12, weight: .heavy, design: .monospaced))
                 .foregroundColor(colors.textMuted)
-                .tracking(1)
+                .tracking(.trackingLoose)
 
             Text(message)
                 .font(.system(size: 14, weight: .semibold))
@@ -306,8 +319,8 @@ struct DataErrorView: View {
                 .font(.system(size: 12))
                 .foregroundColor(colors.textSecondary)
         }
-        .padding(24)
+        .padding(.space6)
         .background(colors.surface)
-        .overlay(Rectangle().stroke(colors.border, lineWidth: 2))
+        .overlay(Rectangle().stroke(colors.border, lineWidth: .borderStandard))
     }
 }

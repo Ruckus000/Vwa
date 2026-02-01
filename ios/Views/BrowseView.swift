@@ -17,12 +17,12 @@ struct BrowseView: View {
         ZStack {
             colors.bg.ignoresSafeArea()
 
-            VStack(alignment: .leading, spacing: 0) {
+            VStack(alignment: .leading, spacing: .space0) {
                 // Back Button
                 Button {
                     dismiss()
                 } label: {
-                    HStack(spacing: 8) {
+                    HStack(spacing: .space2) {
                         Image(systemName: "chevron.left")
                             .font(.system(size: 16, weight: .bold))
                         Text("BACK")
@@ -30,32 +30,34 @@ struct BrowseView: View {
                     }
                     .foregroundColor(colors.primary)
                 }
-                .padding(.horizontal, 20)
-                .padding(.top, 8)
-                .padding(.bottom, 16)
+                .accessibilityLabel("Back to main view")
+                .accessibilityHint("Returns to the main phrase screen")
+                .padding(.horizontal, .space5)
+                .padding(.top, .space2)
+                .padding(.bottom, .space4)
 
                 // Title
                 Text("BROWSE")
-                    .font(.system(size: 36, weight: .black))
+                    .font(.typeDisplayMd)
                     .foregroundColor(colors.text)
-                    .tracking(-2)
-                    .padding(.horizontal, 20)
+                    .tracking(.trackingTight)
+                    .padding(.horizontal, .space5)
 
                 Text("\(store.termCount) TERMS AVAILABLE")
-                    .font(.system(size: 13, design: .monospaced))
+                    .font(.typeMono)
                     .foregroundColor(colors.textMuted)
-                    .padding(.horizontal, 20)
-                    .padding(.top, 4)
-                    .padding(.bottom, 16)
+                    .padding(.horizontal, .space5)
+                    .padding(.top, .space1)
+                    .padding(.bottom, .space4)
 
                 // Search
                 SearchBar(text: $searchText, colors: colors)
-                    .padding(.horizontal, 20)
-                    .padding(.bottom, 16)
+                    .padding(.horizontal, .space5)
+                    .padding(.bottom, .space4)
 
                 // List
                 ScrollView {
-                    LazyVStack(spacing: 12) {
+                    LazyVStack(spacing: .space3) {
                         ForEach(Array(filteredTerms.enumerated()), id: \.element.id) { index, term in
                             listItemView(term: term, index: index)
                         }
@@ -64,8 +66,8 @@ struct BrowseView: View {
                             emptyStateView
                         }
                     }
-                    .padding(.horizontal, 20)
-                    .padding(.bottom, 24)
+                    .padding(.horizontal, .space5)
+                    .padding(.bottom, .space6)
                 }
             }
         }
@@ -77,27 +79,27 @@ struct BrowseView: View {
             store.setTerm(term)
             dismiss()
         } content: {
-            HStack(alignment: .center, spacing: 12) {
+            HStack(alignment: .center, spacing: .space3) {
                 // Index Badge
                 ZStack {
                     Rectangle()
                         .fill(colors.accent)
                         .frame(width: 48, height: 48)
-                        .overlay(Rectangle().stroke(colors.borderStrong, lineWidth: 2))
+                        .overlay(Rectangle().stroke(colors.borderStrong, lineWidth: .borderStandard))
 
                     Text(String(format: "%02d", index + 1))
                         .font(.system(size: 18, weight: .black))
                         .foregroundColor(Color(hex: "0D0D0D"))
                 }
 
-                VStack(alignment: .leading, spacing: 4) {
+                VStack(alignment: .leading, spacing: .space1) {
                     Text(term.term.uppercased())
                         .font(.system(size: 18, weight: .heavy))
                         .foregroundColor(colors.text)
                         .tracking(-0.5)
 
                     Text(term.definition)
-                        .font(.system(size: 12, design: .monospaced))
+                        .font(.typeBodySm)
                         .foregroundColor(colors.textMuted)
                         .lineLimit(1)
                 }
@@ -108,26 +110,29 @@ struct BrowseView: View {
                     .font(.system(size: 16, weight: .medium))
                     .foregroundColor(colors.textMuted)
             }
-            .padding(16)
+            .padding(.space4)
             .frame(maxWidth: .infinity, alignment: .leading)
             .background(colors.surface)
-            .overlay(Rectangle().stroke(colors.borderStrong, lineWidth: 2))
+            .overlay(Rectangle().stroke(colors.borderStrong, lineWidth: .borderStandard))
         }
+        .accessibilityLabel("Phrase \(index + 1): \(term.term). \(term.definition)")
+        .accessibilityHint("Tap to view this phrase")
     }
 
     private var emptyStateView: some View {
-        VStack(spacing: 8) {
+        VStack(spacing: .space2) {
             Text("NO RESULTS FOR \"\(searchText.uppercased())\"")
                 .font(.system(size: 16, weight: .bold))
                 .foregroundColor(colors.textSecondary)
 
             Text("TRY A DIFFERENT TERM")
-                .font(.system(size: 13, design: .monospaced))
+                .font(.typeMono)
                 .foregroundColor(colors.textMuted)
         }
         .frame(maxWidth: .infinity)
-        .padding(24)
+        .padding(.space6)
         .background(colors.surface)
-        .overlay(Rectangle().stroke(colors.border, lineWidth: 2))
-    }
+        .overlay(Rectangle().stroke(colors.border, lineWidth: .borderStandard))
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel("No search results for \(searchText)")
 }

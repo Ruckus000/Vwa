@@ -29,10 +29,11 @@ struct BrutalButton<Content: View>: View {
 struct BrutalButtonStyle: ButtonStyle {
     let colors: AppColors
     let small: Bool
+    @Environment(\.accessibilityReduceMotion) var reduceMotion
 
     func makeBody(configuration: Configuration) -> some View {
-        let offset: CGFloat = configuration.isPressed ? 1 : 0
-        let shadowOffset: CGFloat = configuration.isPressed ? 1 : (small ? 2 : 4)
+        let offset: CGFloat = configuration.isPressed ? .shadowPressedOffset : 0
+        let shadowOffset: CGFloat = configuration.isPressed ? .shadowPressedOffset : (small ? .shadowSmOffset : .shadowMdOffset)
 
         configuration.label
             .offset(x: offset, y: offset)
@@ -42,6 +43,6 @@ struct BrutalButtonStyle: ButtonStyle {
                 x: shadowOffset,
                 y: shadowOffset
             )
-            .animation(.easeOut(duration: 0.075), value: configuration.isPressed)
+            .animation(reduceMotion ? nil : .easeOut(duration: 0.075), value: configuration.isPressed)
     }
 }

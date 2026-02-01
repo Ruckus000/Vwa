@@ -2,6 +2,18 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Documentation References
+
+**IMPORTANT**: When making changes to the iOS app, always reference:
+- **Architecture & Implementation**: [docs/vwa-architecture.md](docs/vwa-architecture.md) - Complete technical architecture, data models, state management patterns, and implementation details
+- **Design System**: [docs/vwa-design-system.md](docs/vwa-design-system.md) - Neo-brutalist design tokens, spacing scale, typography system, color palette, and component specifications
+
+These documents are the source of truth for:
+- Design tokens (spacing, colors, typography, shadows, borders)
+- Component specifications and implementation patterns
+- MVVM architecture and state management
+- SwiftUI best practices and iOS compatibility requirements
+
 ## Project Overview
 
 Vwa is a bilingual slang translation project consisting of two components:
@@ -104,7 +116,7 @@ eas build --platform ios --profile preview
 
 ### Architecture
 
-Native SwiftUI app with MVVM pattern:
+Native SwiftUI app with MVVM pattern. **See [docs/vwa-architecture.md](docs/vwa-architecture.md) for complete architecture details.**
 
 ```
 ios/
@@ -125,16 +137,20 @@ ios/
 │   └── TermSearch.swift          # Fuzzy search with phonetic matching
 ├── Theme/
 │   ├── Colors.swift          # Neo-brutalist color system
-│   └── BrutalModifiers.swift # Custom view modifiers
+│   ├── Spacing.swift         # Design token spacing scale
+│   ├── Typography.swift      # Design token typography system
+│   └── BrutalModifiers.swift # Custom view modifiers + shadow helpers
 └── Resources/
     └── terms.json            # Bundled slang data (curated)
 ```
 
-**Design System:**
+**Design System:** **See [docs/vwa-design-system.md](docs/vwa-design-system.md) for complete design specifications.**
 - **Style**: Neo-brutalist with bold borders, hard shadows, and high contrast
 - **Colors**: Custom dark/light themes with heavy use of black borders
-- **Typography**: System fonts with heavy weights
-- **Shadows**: Hard shadows (no blur) with offset
+- **Typography**: SF Pro system with design tokens (`.typeDisplayLg`, `.typeBodyLg`, etc.)
+- **Spacing**: 4px base unit with design tokens (`.space1` through `.space10`)
+- **Shadows**: Hard shadows (no blur) with helper modifiers (`.brutalShadowSm`, `.brutalShadowMd`, etc.)
+- **Borders**: Design tokens for width (`.borderSubtle`, `.borderStandard`, `.borderHeavy`)
 
 **Key Features:**
 - **Voice Recognition**: Uses Speech framework with silence-based auto-stop

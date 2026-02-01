@@ -11,43 +11,54 @@ struct TermCardView: View {
         term.translation(for: language)
     }
 
+    var termAccessibilityLabel: String {
+        let categoryLabel = "Category: \(term.category.rawValue)"
+        let termLabel = "Term: \(term.term)"
+        let definitionLabel = "Definition: \(term.definition)"
+        let translationLabel = "\(language.displayName) translation: \(translation.definition)"
+        let progressLabel = "Term \(currentIndex + 1) of \(totalTerms)"
+
+        return "\(categoryLabel). \(termLabel). \(definitionLabel). \(translationLabel). \(progressLabel)"
+    }
+
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: 12) {
+            VStack(alignment: .leading, spacing: .space3) {
                 // Category Tag
                 Text(term.category.rawValue)
-                    .font(.system(size: 10, weight: .heavy))
+                    .font(.typeLabel)
                     .foregroundColor(Color(hex: "0D0D0D"))
-                    .padding(.horizontal, 12)
-                    .padding(.vertical, 4)
+                    .padding(.horizontal, .space3)
+                    .padding(.vertical, .space1)
                     .background(colors.accent)
-                    .overlay(Rectangle().stroke(colors.borderStrong, lineWidth: 2))
+                    .overlay(Rectangle().stroke(colors.borderStrong, lineWidth: .borderStandard))
 
                 // Term
                 Text(term.term.uppercased())
-                    .font(.system(size: 42, weight: .black))
+                    .font(.typeDisplayLg)
                     .foregroundColor(colors.text)
-                    .tracking(-2)
+                    .tracking(.trackingTight)
                     .lineLimit(2)
                     .minimumScaleFactor(0.7)
 
                 Text(term.definition)
-                    .font(.system(size: 13, design: .monospaced))
-                    .foregroundColor(colors.textMuted)
+                    .font(.typeBodyLg)
+                    .lineSpacing(8)  // 1.5 line height ≈ 8pt spacing for 16pt font
+                    .foregroundColor(colors.text)  // Primary text, not muted
 
                 // Divider
                 Rectangle()
                     .fill(colors.borderStrong)
-                    .frame(height: 3)
+                    .frame(height: .borderHeavy)
 
                 // Translation
                 Text(language.displayName)
-                    .font(.system(size: 10, weight: .heavy))
+                    .font(.typeLabel)
                     .foregroundColor(colors.primary)
-                    .tracking(1)
+                    .tracking(.trackingLoose)
 
                 Text(translation.definition)
-                    .font(.system(size: 16))
+                    .font(.typeBodyLg)
                     .foregroundColor(colors.text)
                     .lineSpacing(6)
 
@@ -56,7 +67,7 @@ struct TermCardView: View {
                     exampleView(example: example)
                 }
 
-                Spacer(minLength: 16)
+                Spacer(minLength: .space4)
 
                 // Progress
                 ProgressIndicator(
@@ -65,9 +76,11 @@ struct TermCardView: View {
                     colors: colors
                 )
             }
-            .padding(16)
+            .padding(.space4)
         }
         .brutalistCard(colors, heavy: true)
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(termAccessibilityLabel)
     }
 
     @ViewBuilder
@@ -76,32 +89,32 @@ struct TermCardView: View {
             Text("EXAMPLE")
                 .font(.system(size: 9, weight: .heavy, design: .monospaced))
                 .foregroundColor(colors.textMuted)
-                .tracking(1)
+                .tracking(.trackingLoose)
 
             Text("\"\(example)\"")
-                .font(.system(size: 14))
+                .font(.typeBody)
                 .italic()
                 .foregroundColor(colors.textSecondary)
 
             if let translatedExample = translation.example {
                 Rectangle()
                     .fill(colors.border)
-                    .frame(height: 1)
+                    .frame(height: .borderSubtle)
                     .padding(.vertical, 6)
 
-                HStack(alignment: .top, spacing: 8) {
+                HStack(alignment: .top, spacing: .space2) {
                     Text("->")
                         .font(.system(size: 14, weight: .black, design: .monospaced))
                         .foregroundColor(colors.primary)
 
                     Text(translatedExample)
-                        .font(.system(size: 14))
+                        .font(.typeBody)
                         .foregroundColor(colors.text)
                 }
             }
         }
-        .padding(16)
+        .padding(.space4)
         .background(colors.surfaceRaised)
-        .overlay(Rectangle().stroke(colors.border, lineWidth: 2))
+        .overlay(Rectangle().stroke(colors.border, lineWidth: .borderSubtle))
     }
 }

@@ -4,22 +4,23 @@ struct ProgressIndicator: View {
     let current: Int
     let total: Int
     let colors: AppColors
+    @Environment(\.accessibilityReduceMotion) var reduceMotion
 
     private let maxBars = 10
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
+        VStack(alignment: .leading, spacing: .space2) {
             if total <= maxBars {
                 // Individual bars for small sets
-                HStack(spacing: 4) {
+                HStack(spacing: .space1) {
                     ForEach(0..<total, id: \.self) { index in
                         Rectangle()
                             .fill(index == current ? colors.primary : colors.border)
-                            .frame(height: 4)
-                            .frame(maxWidth: index == current ? .infinity : 12)
+                            .frame(height: .space1)
+                            .frame(maxWidth: index == current ? .infinity : .space3)
                     }
                 }
-                .animation(.easeInOut(duration: 0.2), value: current)
+                .animation(reduceMotion ? nil : .easeInOut(duration: 0.2), value: current)
             } else {
                 // Single progress bar for large sets
                 GeometryReader { geometry in
@@ -32,14 +33,17 @@ struct ProgressIndicator: View {
                             .frame(width: geometry.size.width * progressFraction)
                     }
                 }
-                .frame(height: 4)
-                .animation(.easeInOut(duration: 0.2), value: current)
+                .frame(height: .space1)
+                .animation(reduceMotion ? nil : .easeInOut(duration: 0.2), value: current)
             }
 
             Text(counterText)
-                .font(.system(size: 11, design: .monospaced))
+                .font(.typeMonoSm)
                 .foregroundColor(colors.textMuted)
+                .accessibilityLabel("Phrase \(current + 1) of \(total)")
         }
+        .accessibilityElement(children: .combine)
+        .accessibilityValue("Phrase \(current + 1) of \(total)")
     }
 
     private var progressFraction: CGFloat {
