@@ -12,7 +12,7 @@
 ---
 
 **Codebase Reference:** Reflects implementation as of iOS deployment target fix (15.0)
-**Project Files:** 20 Swift files, 1,779 LOC (verified Jan 31, 2026)
+**Project Files:** 22 Swift files (verified Feb 1, 2026)
 
 ---
 
@@ -426,10 +426,9 @@ VWA App
 
 ```
 Vwa/  (root directory)
-├── Vwa.xcodeproj/           # Xcode project (IN ROOT, NOT ios/)
-├── ios/                     # Swift source files
+├── Vwa.xcodeproj/           # Xcode project (in root directory)
+├── Vwa/                     # Swift source files
 │   ├── VwaApp.swift         # @main entry point
-│   ├── Info.plist           # Empty (auto-generated at build from INFOPLIST_KEY_*)
 │   ├── Models/              # 4 files
 │   │   ├── SlangTerm.swift  # Codable data model
 │   │   ├── Category.swift   # 8 enum cases
@@ -452,9 +451,14 @@ Vwa/  (root directory)
 │   ├── Services/            # 2 files
 │   │   ├── SpeechRecognizer.swift  # ObservableObject wrapping Speech.framework
 │   │   └── TermSearch.swift        # Static search methods
-│   └── Theme/               # 2 files
-│       ├── Colors.swift     # AppColors struct for dark/light
-│       └── BrutalModifiers.swift  # Custom view modifiers
+│   ├── Theme/               # 4 files
+│   │   ├── Colors.swift     # AppColors struct for dark/light
+│   │   ├── Spacing.swift    # Spacing constants
+│   │   ├── Typography.swift # Typography extensions
+│   │   └── BrutalModifiers.swift  # Custom view modifiers
+│   ├── Assets.xcassets/     # Asset catalog
+│   └── Resources/
+│       └── terms.json       # Bundled slang data (49 terms)
 ├── data/
 │   └── curated_terms.json   # 49 curated terms (source file)
 └── docs/
@@ -462,7 +466,7 @@ Vwa/  (root directory)
     └── vwa-design-system.md # Design system reference
 ```
 
-**Total:** 20 Swift files, 1,779 LOC (verified Jan 31, 2026)
+**Total:** 22 Swift files (verified Feb 1, 2026)
 
 ## 4.3 State Management Strategy
 
@@ -551,7 +555,7 @@ private func loadPreferences() {
 }
 ```
 
-**Implementation:** See [TermStore.swift](ios/ViewModels/TermStore.swift) for full details.
+**Implementation:** See [TermStore.swift](Vwa/ViewModels/TermStore.swift) for full details.
 
 ## 4.3.1 SwiftUI View Patterns
 
@@ -694,7 +698,7 @@ private static let correctionMap: [String: String] = [
 ]
 ```
 
-**Implementation:** See [TermSearch.swift](ios/Services/TermSearch.swift) for full algorithm.
+**Implementation:** See [TermSearch.swift](Vwa/Services/TermSearch.swift) for full algorithm.
 
 ### Browse Screen Filtering
 
@@ -852,7 +856,7 @@ enum SpeechError: Error, LocalizedError {
 }
 ```
 
-**Implementation:** See [SpeechRecognizer.swift](ios/Services/SpeechRecognizer.swift) for full details.
+**Implementation:** See [SpeechRecognizer.swift](Vwa/Services/SpeechRecognizer.swift) for full details.
 
 ## 4.6 Navigation
 
@@ -968,7 +972,7 @@ enum Theme: String, Codable, CaseIterable {
 }
 ```
 
-**Full schema:** See [SlangTerm.swift](ios/Models/SlangTerm.swift)
+**Full schema:** See [SlangTerm.swift](Vwa/Models/SlangTerm.swift)
 
 ### Example Term Object
 
@@ -1014,12 +1018,12 @@ The project uses **auto-generated Info.plist** with keys defined in Xcode projec
 ```
 # In Vwa.xcodeproj/project.pbxproj (lines 273-274):
 GENERATE_INFOPLIST_FILE = YES;
-INFOPLIST_FILE = ios/Info.plist;
+INFOPLIST_FILE = Vwa/Info.plist;
 INFOPLIST_KEY_NSMicrophoneUsageDescription = "VWA needs microphone access to hear what you say.";
 INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "VWA needs speech recognition to look up slang terms by voice.";
 ```
 
-**Note:** The `ios/Info.plist` file is empty (`<dict/>`) because Xcode generates it at build time from `INFOPLIST_KEY_*` settings. This is standard for modern Xcode projects.
+**Note:** The `Vwa/Info.plist` file is empty (`<dict/>`) because Xcode generates it at build time from `INFOPLIST_KEY_*` settings. This is standard for modern Xcode projects.
 
 ### Runtime Authorization
 
@@ -1037,7 +1041,7 @@ func requestAuthorization() {
 }
 ```
 
-**Implementation:** See [SpeechRecognizer.swift:45-68](ios/Services/SpeechRecognizer.swift)
+**Implementation:** See [SpeechRecognizer.swift:45-68](Vwa/Services/SpeechRecognizer.swift)
 
 ### Data Privacy
 
@@ -1066,7 +1070,7 @@ Not applicable — no network requests.
 ### Optimization Techniques (Implemented)
 
 - ✅ Lazy loading for BrowseView list (SwiftUI LazyVStack)
-- ✅ Debounced search (300ms in [SearchBar.swift:12](ios/Views/Components/SearchBar.swift))
+- ✅ Debounced search (300ms in [SearchBar.swift:12](Vwa/Views/Components/SearchBar.swift))
 - ✅ Audio session cleanup in deinit (SpeechRecognizer)
 - ✅ UserDefaults batching (TermStore saves on didSet)
 
@@ -1146,7 +1150,7 @@ python translate_terms.py \
 3. Auto-categorizes each term
 4. Saves progress with checkpointing (resume if interrupted)
 
-**Current Status:** 49 terms have been preprocessed and are bundled in `ios/Resources/terms.json`
+**Current Status:** 49 terms have been preprocessed and are bundled in `Vwa/Resources/terms.json`
 
 ### Content Categorization
 

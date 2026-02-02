@@ -351,7 +351,7 @@ Vwa uses a constrained type system based on Apple's SF Pro family, optimized for
 
 **SwiftUI Implementation:**
 
-Reference implementation from [ios/Views/Components/TermCardView.swift](ios/Views/Components/TermCardView.swift):
+Reference implementation from [Vwa/Views/Components/TermCardView.swift](Vwa/Views/Components/TermCardView.swift):
 
 ```swift
 // Display Large - Hero Terms
@@ -783,7 +783,7 @@ Full-width button linking to directory view.
 
 ### Button Press
 
-When a user presses a button, use the **BrutalButtonStyle** pattern ([ios/Views/Components/BrutalButton.swift](ios/Views/Components/BrutalButton.swift)):
+When a user presses a button, use the **BrutalButtonStyle** pattern ([Vwa/Views/Components/BrutalButton.swift](Vwa/Views/Components/BrutalButton.swift)):
 
 1. Immediately (75ms) translate the button right and down
 2. Reduce shadow from 4px to 1px
@@ -843,7 +843,7 @@ TermCardView(...)
 
 ### Waveform Animation
 
-Audio visualization using sine-wave based animation ([ios/Views/Components/ListeningIndicator.swift](ios/Views/Components/ListeningIndicator.swift)):
+Audio visualization using sine-wave based animation ([Vwa/Views/Components/ListeningIndicator.swift](Vwa/Views/Components/ListeningIndicator.swift)):
 
 ```swift
 struct ListeningIndicator: View {
@@ -1165,7 +1165,7 @@ Support Dynamic Type (iOS) with the following constraints:
 
 ## 11.2 Design Token Implementation
 
-Create a centralized design token system using Swift structs. Implementation can be found in [ios/Theme/Colors.swift](ios/Theme/Colors.swift).
+Create a centralized design token system using Swift structs. Implementation can be found in [Vwa/Theme/Colors.swift](Vwa/Theme/Colors.swift).
 
 ### Color Tokens
 
@@ -1310,7 +1310,7 @@ The app follows **MVVM (Model-View-ViewModel)** architecture with clean separati
 ### Directory Structure
 
 ```
-ios/
+Vwa/
 ├── Models/              # Pure data structures (Codable, Identifiable)
 │   ├── SlangTerm.swift  # Core domain model with translations
 │   ├── Category.swift   # Term category enum (TRUTH, PRAISE, etc.)
@@ -1333,8 +1333,10 @@ ios/
 ├── Services/            # External integrations & business logic
 │   ├── SpeechRecognizer.swift  # iOS Speech framework wrapper
 │   └── TermSearch.swift        # Fuzzy search & phonetic matching
-└── Theme/               # Design system implementation
+└── Theme/               # Design system implementation (4 files)
     ├── Colors.swift            # AppColors struct
+    ├── Spacing.swift           # Spacing constants
+    ├── Typography.swift        # Typography extensions
     └── BrutalModifiers.swift   # Custom view modifiers
 ```
 
@@ -1351,7 +1353,7 @@ struct SlangTerm: Codable, Identifiable {
 }
 ```
 
-**ViewModels** manage state with `ObservableObject` ([ios/ViewModels/TermStore.swift](ios/ViewModels/TermStore.swift)):
+**ViewModels** manage state with `ObservableObject` ([Vwa/ViewModels/TermStore.swift](Vwa/ViewModels/TermStore.swift)):
 ```swift
 class TermStore: ObservableObject {
     @Published var terms: [SlangTerm] = []
@@ -1392,7 +1394,7 @@ class SpeechRecognizer: ObservableObject {
 
 ### Reusable Styling
 
-Custom view modifiers enable consistent styling ([ios/Theme/BrutalModifiers.swift](ios/Theme/BrutalModifiers.swift)):
+Custom view modifiers enable consistent styling ([Vwa/Theme/BrutalModifiers.swift](Vwa/Theme/BrutalModifiers.swift)):
 
 ```swift
 // Definition
@@ -1440,7 +1442,7 @@ This architecture ensures:
    }
    ```
 
-2. **Debounced search** – Prevent lag with 300ms debounce ([ios/Views/Components/SearchBar.swift](ios/Views/Components/SearchBar.swift)):
+2. **Debounced search** – Prevent lag with 300ms debounce ([Vwa/Views/Components/SearchBar.swift](Vwa/Views/Components/SearchBar.swift)):
    ```swift
    .onChange(of: searchText) { newValue in
        debounceTask?.cancel()

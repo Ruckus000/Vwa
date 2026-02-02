@@ -3,14 +3,14 @@
 A bilingual project for translating American English slang to Spanish and French, consisting of:
 
 1. **Python Data Collector** (`src/`): CLI tool to collect and process slang from Urban Dictionary API
-2. **Swift iOS App** (`ios/`): Native iOS app with voice recognition and translations
+2. **Swift iOS App** (`Vwa/`): Native iOS app with voice recognition and translations
 
 ## Project Structure
 
 ```
 Vwa/
 ├── src/                    # Python slang collector
-├── ios/                    # Swift iOS app sources
+├── Vwa/                    # Swift iOS app sources
 ├── data/                   # Collected and processed slang data
 ├── Vwa.xcodeproj/         # Xcode project
 ├── requirements.txt       # Python dependencies
@@ -121,7 +121,7 @@ src/
 ## iOS App Architecture
 
 ```
-ios/
+Vwa/
 ├── VwaApp.swift              # App entry point
 ├── Models/                   # Data models (SlangTerm, Category, Language, Theme)
 ├── ViewModels/               # State management (TermStore)
@@ -167,7 +167,7 @@ The project uses a multi-step pipeline to go from raw data to the iOS app:
 1. **Collect**: `python src/cli.py -n 1000` → `data/slang_terms.json`
 2. **Curate**: Manually filter to real Gen Z slang (random UD terms vary in quality)
 3. **Translate**: `python translate_terms.py` (uses Groq AI) → `data/curated_terms.json`
-4. **Bundle**: Copy `curated_terms.json` → `ios/Resources/terms.json`
+4. **Bundle**: Copy `curated_terms.json` → `Vwa/Resources/terms.json`
 5. **Build**: Compile iOS app with bundled data
 
 See `VWA_Swift_Implementation_Plan_v2.md` for detailed implementation guidance.

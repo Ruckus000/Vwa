@@ -19,7 +19,7 @@ These documents are the source of truth for:
 Vwa is a bilingual slang translation project consisting of two components:
 
 1. **Python Data Collector** (src/ directory): Scrapes American English slang from Urban Dictionary API and processes it with AI translations
-2. **Swift iOS App** (ios/ directory): Native iOS app that displays curated slang with voice recognition and Spanish/French translations
+2. **Swift iOS App** (Vwa/ directory): Native iOS app that displays curated slang with voice recognition and Spanish/French translations
 
 ## Python Collector
 
@@ -119,7 +119,7 @@ eas build --platform ios --profile preview
 Native SwiftUI app with MVVM pattern. **See [docs/vwa-architecture.md](docs/vwa-architecture.md) for complete architecture details.**
 
 ```
-ios/
+Vwa/
 ├── VwaApp.swift              # App entry point
 ├── Models/
 │   ├── SlangTerm.swift       # Core data model with Codable
@@ -170,7 +170,7 @@ The app uses iOS Speech framework with smart timeout logic:
 **iOS Compatibility:**
 - Target: iOS 15+
 - Uses single-parameter `onChange` syntax for iOS 15 compatibility
-- NavigationStack for iOS 16+ navigation
+- NavigationView for iOS 15+ navigation
 
 ## Data Flow
 
@@ -181,7 +181,7 @@ data/slang_terms.json (raw, 1000+ terms)
   ↓ (manual curation + translate_terms.py)
 data/curated_terms.json (40-50 quality terms)
   ↓ (manual copy)
-ios/Resources/terms.json (bundled in iOS app)
+Vwa/Resources/terms.json (bundled in iOS app)
 ```
 
 **Critical Steps:**
@@ -196,7 +196,7 @@ ios/Resources/terms.json (bundled in iOS app)
 
 1. Edit `data/curated_terms.json` (or use spreadsheet method from implementation plan)
 2. Run translation script if needed
-3. Copy to `ios/Resources/terms.json`
+3. Copy to `Vwa/Resources/terms.json`
 4. Rebuild iOS app in Xcode
 
 ### Debugging Voice Recognition Issues
