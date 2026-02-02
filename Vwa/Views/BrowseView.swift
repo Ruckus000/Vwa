@@ -3,6 +3,7 @@ import SwiftUI
 struct BrowseView: View {
     @EnvironmentObject private var store: TermStore
     @Environment(\.dismiss) private var dismiss
+    @Binding var didSelectTerm: Bool
     @State private var searchText = ""
 
     var colors: AppColors {
@@ -77,6 +78,7 @@ struct BrowseView: View {
     private func listItemView(term: SlangTerm, index: Int) -> some View {
         BrutalButton(colors: colors) {
             store.setTerm(term)
+            didSelectTerm = true
             dismiss()
         } content: {
             HStack(alignment: .center, spacing: .space3) {
@@ -135,4 +137,12 @@ struct BrowseView: View {
         .overlay(Rectangle().stroke(colors.border, lineWidth: .borderStandard))
         .accessibilityElement(children: .combine)
         .accessibilityLabel("No search results for \(searchText)")
+    }
+}
+
+// MARK: - Preview
+
+#Preview("Browse View") {
+    BrowseView(didSelectTerm: .constant(false))
+        .environmentObject(TermStore())
 }

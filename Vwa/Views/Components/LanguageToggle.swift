@@ -23,13 +23,14 @@ struct LanguageToggle: View {
                 if lang == .ES {
                     Rectangle()
                         .fill(colors.borderStrong)
-                        .frame(width: .borderStandard)
+                        .frame(width: .borderStandard, height: 36)
                 }
             }
         }
         .accessibilityElement(children: .contain)
         .background(colors.surface)
         .overlay(Rectangle().stroke(colors.borderStrong, lineWidth: .borderStandard))
+        .fixedSize()  // Prevent expansion - size to content only
         .brutalShadowSm(colors)
     }
 }

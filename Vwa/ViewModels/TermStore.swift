@@ -4,9 +4,7 @@ import Combine
 final class TermStore: ObservableObject {
     // MARK: - Published State
     @Published private(set) var terms: [SlangTerm] = []
-    @Published var currentIndex: Int = 0 {
-        didSet { saveCurrentIndex() }
-    }
+    @Published var currentIndex: Int = 0
     @Published var language: Language = .ES {
         didSet { saveLanguage() }
     }
@@ -27,7 +25,6 @@ final class TermStore: ObservableObject {
     private enum Keys {
         static let language = "vwa.language"
         static let theme = "vwa.theme"
-        static let currentIndex = "vwa.currentIndex"
     }
 
     // MARK: - Initialization
@@ -57,17 +54,7 @@ final class TermStore: ObservableObject {
         }
     }
 
-    // MARK: - Navigation
-    func nextTerm() {
-        guard !terms.isEmpty else { return }
-        currentIndex = (currentIndex + 1) % terms.count
-    }
-
-    func prevTerm() {
-        guard !terms.isEmpty else { return }
-        currentIndex = (currentIndex - 1 + terms.count) % terms.count
-    }
-
+    // MARK: - Term Selection
     func setTerm(_ term: SlangTerm) {
         if let index = terms.firstIndex(where: { $0.id == term.id }) {
             currentIndex = index
@@ -79,7 +66,7 @@ final class TermStore: ObservableObject {
         currentIndex = index
     }
 
-    // MARK: - Persistence (with bounds checking)
+    // MARK: - Persistence
     private func loadPreferences() {
         // Language
         if let langRaw = UserDefaults.standard.string(forKey: Keys.language),
@@ -92,18 +79,6 @@ final class TermStore: ObservableObject {
            let savedTheme = Theme(rawValue: themeRaw) {
             theme = savedTheme
         }
-
-        // Current index - BOUNDS CHECK to prevent crash on app updates
-        let savedIndex = UserDefaults.standard.integer(forKey: Keys.currentIndex)
-        if terms.isEmpty {
-            currentIndex = 0
-        } else {
-            currentIndex = min(savedIndex, terms.count - 1)
-        }
-    }
-
-    private func saveCurrentIndex() {
-        UserDefaults.standard.set(currentIndex, forKey: Keys.currentIndex)
     }
 
     private func saveLanguage() {

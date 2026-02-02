@@ -8,6 +8,11 @@ final class SpeechRecognizer: ObservableObject {
     @Published private(set) var isRecording: Bool = false
     @Published private(set) var error: SpeechError?
     @Published private(set) var authorizationStatus: SFSpeechRecognizerAuthorizationStatus = .notDetermined
+    
+    /// Whether speech recognition is currently available on this device
+    var isAvailable: Bool {
+        recognizer?.isAvailable ?? false
+    }
 
     // MARK: - Configuration
     /// Maximum recording time (hard limit)

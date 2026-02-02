@@ -4,21 +4,18 @@ struct TermCardView: View {
     let term: SlangTerm
     let language: Language
     let colors: AppColors
-    let currentIndex: Int
-    let totalTerms: Int
 
     var translation: SlangTerm.Translation {
         term.translation(for: language)
     }
 
     var termAccessibilityLabel: String {
-        let categoryLabel = "Category: \(term.category.rawValue)"
-        let termLabel = "Term: \(term.term)"
-        let definitionLabel = "Definition: \(term.definition)"
-        let translationLabel = "\(language.displayName) translation: \(translation.definition)"
-        let progressLabel = "Term \(currentIndex + 1) of \(totalTerms)"
-
-        return "\(categoryLabel). \(termLabel). \(definitionLabel). \(translationLabel). \(progressLabel)"
+        [
+            "Category: \(term.category.rawValue)",
+            "Term: \(term.term)",
+            "Definition: \(term.definition)",
+            "\(language.displayName) translation: \(translation.definition)"
+        ].joined(separator: ". ")
     }
 
     var body: some View {
@@ -68,13 +65,6 @@ struct TermCardView: View {
                 }
 
                 Spacer(minLength: .space4)
-
-                // Progress
-                ProgressIndicator(
-                    current: currentIndex,
-                    total: totalTerms,
-                    colors: colors
-                )
             }
             .padding(.space4)
         }
@@ -117,4 +107,33 @@ struct TermCardView: View {
         .background(colors.surfaceRaised)
         .overlay(Rectangle().stroke(colors.border, lineWidth: .borderSubtle))
     }
+}
+
+// MARK: - Preview
+
+#Preview("Term Card - Dark") {
+    TermCardView(
+        term: SlangTerm(
+            id: 1,
+            term: "no cap",
+            category: .truth,
+            definition: "For real, no lie, I'm being completely serious",
+            example: "That concert was amazing, no cap",
+            translations: SlangTerm.Translations(
+                ES: SlangTerm.Translation(
+                    definition: "Expresión que significa 'en serio' o 'sin mentir'. Se usa para enfatizar que algo es completamente verdad.",
+                    example: "Ese concierto estuvo increíble, en serio"
+                ),
+                FR: SlangTerm.Translation(
+                    definition: "Expression signifiant 'sérieusement' ou 'sans mentir'. Utilisée pour souligner que quelque chose est absolument vrai.",
+                    example: "Ce concert était incroyable, sans mentir"
+                )
+            ),
+            meta: SlangTerm.TermMeta(thumbsUp: 100, thumbsDown: 5, author: "preview", addedOn: "2025-01-01")
+        ),
+        language: .ES,
+        colors: .dark
+    )
+    .padding()
+    .background(Color(hex: "0D0D0D"))
 }
